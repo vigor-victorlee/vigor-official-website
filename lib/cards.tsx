@@ -37,6 +37,7 @@ export const INDUSTRY_CARDS: CarouselCard[] = [
     title: "Healthcare",
     description: "Hospital superapps, clinical workflows, NLP, patient mobile.",
     gradient: VIOLET_PINK,
+    image: "/assets/industries/healthcare.jpg",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <path d="M19 14V8a2 2 0 0 0-2-2h-3V3h-4v3H7a2 2 0 0 0-2 2v6" />
@@ -62,6 +63,7 @@ export const INDUSTRY_CARDS: CarouselCard[] = [
     title: "Digital Government",
     description: "Citizen platforms, VMS, ESG reporting, grant-aligned R&D.",
     gradient: VIOLET_BLUE,
+    image: "/assets/industries/government.jpg",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6" />
@@ -85,6 +87,7 @@ export const INDUSTRY_CARDS: CarouselCard[] = [
     title: "Smart City",
     description: "Traffic AI, edge IoT, city-scale data spines.",
     gradient: VIOLET_TEAL,
+    image: "/assets/industries/smartcity.jpg",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="3" />
@@ -109,6 +112,7 @@ export const INDUSTRY_CARDS: CarouselCard[] = [
     title: "Retail & F&B",
     description: "Customer-facing superapps, loyalty engines, CRM.",
     gradient: VIOLET_GRADIENT,
+    image: "/assets/industries/retail.jpg",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 7h18l-2 13H5z" />
@@ -133,6 +137,7 @@ export const INDUSTRY_CARDS: CarouselCard[] = [
     title: "Immersive & Entertainment",
     description: "3D wayfinding, spatial experiences, AR/VR pilots.",
     gradient: VIOLET_PINK,
+    image: "/assets/industries/immersive.jpg",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2L2 7l10 5 10-5z" />
