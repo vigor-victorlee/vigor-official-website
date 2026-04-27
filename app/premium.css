@@ -142,6 +142,45 @@
 .hero-ctas .btn-primary:hover::after { opacity: 1; }
 .hero-ctas .btn-primary > * { position: relative; z-index: 1; }
 
+/* ---- Aceternity feature-card hover (for projects grid) ---- */
+.proj-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 360ms cubic-bezier(0.2, 0.7, 0.1, 1),
+              border-color 360ms ease;
+}
+.proj-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(
+    260px circle at var(--px, 50%) var(--py, 50%),
+    rgba(183, 139, 255, 0.18),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 240ms ease;
+  z-index: 0;
+  pointer-events: none;
+}
+.proj-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(106, 13, 221, 0.08) 100%);
+  opacity: 0;
+  transition: opacity 240ms ease;
+  pointer-events: none;
+}
+.proj-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(183, 139, 255, 0.45);
+}
+.proj-card:hover::before, .proj-card:hover::after { opacity: 1; }
+.proj-card > * { position: relative; z-index: 1; }
+
 /* ---- Stagger reveal helper ---- */
 .fade-up {
   animation: fade-up 700ms cubic-bezier(0.2, 0.7, 0.1, 1) both;

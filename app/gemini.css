@@ -1,0 +1,80 @@
+/* ====== Gemini-style scroll-driven effect ====== */
+.gem-root {
+  position: relative;
+  min-height: 140vh;
+  padding: 120px 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+.gem-title {
+  position: sticky;
+  top: 140px;
+  text-align: center;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto 40px;
+  padding: 0 24px;
+}
+.gem-title .eyebrow-violet { display: inline-block; }
+.gem-title h2 {
+  margin: 16px 0 14px;
+  font-family: Manrope, sans-serif;
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--vigor-white);
+}
+.gem-title p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+}
+.gem-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.gem-stage-list {
+  position: sticky;
+  top: 60vh;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 18px;
+  padding: 0 24px;
+  margin: 60vh auto 0;
+  max-width: 1100px;
+}
+.gem-stage {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(8, 8, 12, 0.7);
+  border: 1px solid rgba(106, 13, 221, 0.4);
+  backdrop-filter: blur(6px);
+}
+.gem-stage-label {
+  font-family: Manrope, sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--vigor-white);
+  letter-spacing: 0.02em;
+}
+.gem-stage-desc {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+@media (max-width: 720px) {
+  .gem-root { min-height: 120vh; padding: 80px 0; }
+  .gem-title { top: 100px; }
+  .gem-title h2 { font-size: clamp(36px, 11vw, 56px); }
+  .gem-stage-desc { display: none; }
+}

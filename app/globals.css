@@ -4,6 +4,9 @@
 @import "./premium.css";
 @import "./products.css";
 @import "./liveboard.css";
+@import "./carousel.css";
+@import "./footer.css";
+@import "./gemini.css";
 
 /* ====== thevigor.co-style nav (override the old .nav) ====== */
 .nav { display: none !important; }
@@ -16,6 +19,38 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-on-dark);
+  transition: background 320ms ease, border-color 320ms ease;
+}
+
+/* Resizable: shrink on scroll */
+.vigor-nav-root.is-shrunk {
+  background: rgba(8, 8, 12, 0.92);
+  border-bottom-color: rgba(106, 13, 221, 0.25);
+}
+.vigor-nav-root.is-shrunk .utility-bar {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  border-bottom-color: transparent;
+  transition: max-height 320ms ease, opacity 220ms ease;
+}
+.vigor-nav-root .utility-bar {
+  max-height: 50px;
+  opacity: 1;
+  transition: max-height 320ms ease, opacity 220ms ease;
+}
+.vigor-nav-root.is-shrunk .main-inner {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  transition: padding 320ms ease;
+}
+.vigor-nav-root.is-shrunk .vigor-logo img {
+  height: 30px;
+  transition: height 320ms ease;
+}
+.vigor-nav-root .main-inner,
+.vigor-nav-root .vigor-logo img {
+  transition: padding 320ms ease, height 320ms ease;
 }
 .utility-bar {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -299,7 +334,7 @@
   pointer-events: auto;
 }
 .mega-panel {
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 116px;
   transform: translateX(-50%);

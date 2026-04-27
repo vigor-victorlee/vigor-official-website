@@ -21,7 +21,15 @@ const UTILITY_NAV = [
 export default function Nav() {
   const [openMm, setOpenMm] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const scheduleClose = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -47,7 +55,7 @@ export default function Nav() {
 
   return (
     <>
-      <header className="vigor-nav-root" onMouseLeave={scheduleClose}>
+      <header className={`vigor-nav-root${scrolled ? " is-shrunk" : ""}`} onMouseLeave={scheduleClose}>
         {/* Top utility bar */}
         <div className="utility-bar">
           <div className="utility-inner">

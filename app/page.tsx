@@ -1,7 +1,12 @@
 import Nav from "@/components/Nav";
 import HeroSubRotator from "@/components/HeroSubRotator";
+import HeroHeadline from "@/components/HeroHeadline";
 import HeroSpotlight from "@/components/HeroSpotlight";
 import HeroLiveBoard from "@/components/HeroLiveBoard";
+import GeminiEffect from "@/components/GeminiEffect";
+import AppleCarousel from "@/components/AppleCarousel";
+import Footer from "@/components/Footer";
+import { INDUSTRY_CARDS, CAPABILITY_CARDS } from "@/lib/cards";
 import TrustMarquee from "@/components/TrustMarquee";
 import Reveal from "@/components/Reveal";
 import Projects from "@/components/Projects";
@@ -22,10 +27,7 @@ export default function Page() {
                 <span className="dot" />
                 Six industries · One engineering practice
               </div>
-              <h1 className="hero-headline">
-                Deeptech<br />
-                for the <span className="accent">real</span> world.
-              </h1>
+              <HeroHeadline />
               <HeroSubRotator />
               <div className="hero-ctas">
                 <a className="btn btn-primary" href="#contact">
@@ -135,50 +137,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="industries-grid">
-              <a className="ind-card reveal lift-card" href="#projects">
-                <div className="ind-num">Vertical 01</div>
-                <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M2 20h20M4 20V10l5 4V10l5 4V6l5 4v10" /><path d="M9 20v-4M14 20v-4" /></svg>
-                <h3>Manufacturing</h3>
-                <p>Non-invasive IIoT, factory analytics, frontier ops apps, and prop-jig with embedded testing software.</p>
-                <div className="ind-tags"><span>Xentr.AI</span><span>IIoT</span><span>Frontier ops</span></div>
-              </a>
-              <a className="ind-card reveal lift-card" href="#projects">
-                <div className="ind-num">Vertical 02</div>
-                <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14V8a2 2 0 0 0-2-2h-3V3h-4v3H7a2 2 0 0 0-2 2v6" /><path d="M12 9v6M9 12h6" /><path d="M3 14h18l-2 7H5z" /></svg>
-                <h3>Healthcare</h3>
-                <p>Hospital superapps, post-surgery sentiment analysis, clinical workflow systems, and patient-facing mobile.</p>
-                <div className="ind-tags"><span>Superapp</span><span>NLP</span><span>Mobile</span></div>
-              </a>
-              <a className="ind-card reveal lift-card" href="#projects">
-                <div className="ind-num">Vertical 03</div>
-                <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6" /></svg>
-                <h3>Digital Government</h3>
-                <p>Citizen platforms, vendor management systems, ESG reporting, and grant-aligned R&amp;D infrastructure.</p>
-                <div className="ind-tags"><span>ESG</span><span>VMS</span><span>Citizen</span></div>
-              </a>
-              <a className="ind-card reveal lift-card" href="#projects">
-                <div className="ind-num">Vertical 04</div>
-                <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 1v6M12 17v6M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M1 12h6M17 12h6M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /></svg>
-                <h3>Smart City</h3>
-                <p>Traffic analytics, intersection intelligence, edge IoT meshes, and city-scale data spines.</p>
-                <div className="ind-tags"><span>Traffic AI</span><span>Edge IoT</span><span>Analytics</span></div>
-              </a>
-              <a className="ind-card reveal lift-card" href="#projects">
-                <div className="ind-num">Vertical 05</div>
-                <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7h18l-2 13H5z" /><path d="M8 7V5a4 4 0 0 1 8 0v2" /></svg>
-                <h3>Retail &amp; F&amp;B</h3>
-                <p>Customer-facing superapps, loyalty engines, CRM, and operations frontiers for high-volume chains.</p>
-                <div className="ind-tags"><span>Superapp</span><span>CRM</span><span>Loyalty</span></div>
-              </a>
-              <a className="ind-card reveal lift-card" href="#projects">
-                <div className="ind-num">Vertical 06</div>
-                <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5z" /><path d="M2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
-                <h3>Immersive &amp; Entertainment</h3>
-                <p>3D wayfinding, spatial experiences, AR/VR pilots, and interactive venue installations.</p>
-                <div className="ind-tags"><span>3D</span><span>Wayfinding</span><span>Spatial</span></div>
-              </a>
-            </div>
+            <AppleCarousel cards={INDUSTRY_CARDS} idPrefix="industry" />
           </div>
         </section>
       </Reveal>
@@ -260,56 +219,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="cap-grid">
-              <div className="cap-cell reveal lift-card">
-                <span className="num">/01</span>
-                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /><circle cx="12" cy="12" r="3" /></svg>
-                <h4>AI &amp; LLM Systems</h4>
-                <p>Domain-tuned agents for inspection, scheduling, shop-floor decisions. Not chatbots — operators.</p>
-              </div>
-              <div className="cap-cell reveal lift-card">
-                <span className="num">/02</span>
-                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /><path d="M10 6.5h4M10 17.5h4M6.5 10v4M17.5 10v4" /></svg>
-                <h4>Industrial IoT</h4>
-                <p>Non-invasive retrofit on legacy machines. CI-grade observability without ripping the floor.</p>
-              </div>
-              <div className="cap-cell reveal lift-card">
-                <span className="num">/03</span>
-                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12h3l3-7 6 14 3-7h3" /></svg>
-                <h4>ESG &amp; CBAM</h4>
-                <p>Auditable carbon and ESG reporting wired to the same data spine. Built for APAC exporters.</p>
-              </div>
-              <div className="cap-cell reveal lift-card">
-                <span className="num">/04</span>
-                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="8" height="8" rx="1" /><rect x="13" y="13" width="8" height="8" rx="1" /><path d="M11 7h4a2 2 0 0 1 2 2v4" /></svg>
-                <h4>Integrations</h4>
-                <p>ERP, MES, PLC, SCADA tied into one queryable plane. We&apos;ve stitched them all.</p>
-              </div>
-              <div className="cap-cell reveal lift-card">
-                <span className="num">/05</span>
-                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 0 1-9 9M21 12a9 9 0 0 0-9-9M3 12a9 9 0 0 1 9-9M3 12a9 9 0 0 0 9 9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></svg>
-                <h4>Cloud Infrastructure</h4>
-                <p>Private and hybrid clouds engineered for industrial workloads — not generic SaaS.</p>
-              </div>
-              <div className="cap-cell reveal lift-card">
-                <span className="num">/06</span>
-                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6M9 13l2 2 4-4" /></svg>
-                <h4>Test Automation</h4>
-                <p>Quality systems and inspection pipelines that survive shift changes and floor reality.</p>
-              </div>
-              <div className="cap-cell reveal lift-card">
-                <span className="num">/07</span>
-                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="3" /><path d="M5 21a7 7 0 0 1 14 0" /></svg>
-                <h4>Engineering Advisory</h4>
-                <p>Engineer-led, opinionated, short engagements. Recommendations you can ship Monday.</p>
-              </div>
-              <div className="cap-cell reveal lift-card">
-                <span className="num">/08</span>
-                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7" /><path d="M3 7l9 6 9-6M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2" /></svg>
-                <h4>Maintenance &amp; Support</h4>
-                <p>Long-haul SLAs from the team that built it. No handoff to a managed-service vendor.</p>
-              </div>
-            </div>
+            <AppleCarousel cards={CAPABILITY_CARDS} idPrefix="capability" />
           </div>
         </section>
       </Reveal>
@@ -416,6 +326,9 @@ export default function Page() {
         </section>
       </Reveal>
 
+      {/* GEMINI EFFECT */}
+      <GeminiEffect />
+
       {/* MANIFESTO */}
       <Reveal>
         <section className="section manifesto" id="manifesto">
@@ -450,48 +363,7 @@ export default function Page() {
       </section>
 
       {/* FOOTER */}
-      <footer className="site-footer">
-        <div className="container-wide">
-          <div className="footer-top">
-            <div className="footer-brand">
-              <div className="word">VIGOR</div>
-              <p className="tagline">Operator-built deeptech bridging shop-floor operations with global compliance — engineered in Penang.</p>
-              <p className="address">L3A-2, Level 3A, SPICE Arena 180,<br />Jalan Tun Dr. Awang, 11900 Relau,<br />Pulau Pinang, Malaysia</p>
-            </div>
-            <div className="footer-col">
-              <h5>Company</h5>
-              <ul>
-                <li><a href="#industries">About</a></li>
-                <li><a href="#products">Services</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#contact">Contact</a></li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h5>Products</h5>
-              <ul>
-                <li><a href="#products">Xentr.AI</a></li>
-                <li><a href="#products">ESG / CBAM</a></li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h5>Contact</h5>
-              <ul>
-                <li><a href="mailto:victorlee@vigordigital.org">victorlee@vigordigital.org</a></li>
-                <li><a href="mailto:info@vigordigital.org">info@vigordigital.org</a></li>
-                <li><a href="tel:+60111131981">+6011-111 31981</a></li>
-                <li><a href="https://thevigor.co">thevigor.co</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="footer-base">
-            <div className="reg">VIGOR Digital Solution Sdn. Bhd. (1496696D / 202301002777)<br />© 2026 VIGOR Digital Solution. All rights reserved.</div>
-            <div className="accred">
-              <span>SIRIM</span><span>MIMOS</span><span>MIDA</span><span>NCER</span><span>MIDF</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+<Footer />
       <PopupCTA />
     </>
   );

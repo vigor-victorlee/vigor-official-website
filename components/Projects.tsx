@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Project = {
   cat: string;
@@ -200,6 +200,18 @@ const FILTERS = [
 
 export default function Projects() {
   const [active, setActive] = useState("all");
+
+  useEffect(() => {
+    const onMove = (e: PointerEvent) => {
+      const card = (e.target as HTMLElement).closest<HTMLElement>(".proj-card");
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--px", `${e.clientX - r.left}px`);
+      card.style.setProperty("--py", `${e.clientY - r.top}px`);
+    };
+    document.addEventListener("pointermove", onMove);
+    return () => document.removeEventListener("pointermove", onMove);
+  }, []);
 
   return (
     <>
