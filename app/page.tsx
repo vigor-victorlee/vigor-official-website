@@ -38,11 +38,6 @@ export default function Page() {
                 </a>
                 <a className="btn btn-ghost" href="#industries">Explore industries</a>
               </div>
-              <div className="hero-meta">
-                <div className="meta"><span className="k">Industries</span><span className="v">6 verticals</span></div>
-                <div className="meta"><span className="k">Projects shipped</span><span className="v">19+ live</span></div>
-                <div className="meta"><span className="k">Enterprise partner</span><span className="v">Microsoft</span></div>
-              </div>
             </div>
 
             <div className="hero-schematic fade-up fade-up-3" aria-hidden="true">
