@@ -1,5 +1,5 @@
 import Nav from "@/components/Nav";
-import HeroRotator from "@/components/HeroRotator";
+import HeroSubRotator from "@/components/HeroSubRotator";
 import HeroSpotlight from "@/components/HeroSpotlight";
 import TrustMarquee from "@/components/TrustMarquee";
 import Reveal from "@/components/Reveal";
@@ -25,10 +25,7 @@ export default function Page() {
                 Deeptech<br />
                 for the <span className="accent">real</span> world.
               </h1>
-              <p className="hero-sub">
-                We engineer software, hardware, and AI systems across manufacturing, healthcare, digital government, smart city, retail &amp; F&amp;B, and immersive. From hospital superapps to factory analytics, traffic intelligence to firmware — built by operators, shipped to production.
-              </p>
-              <HeroRotator />
+              <HeroSubRotator />
               <div className="hero-ctas">
                 <a className="btn btn-primary" href="#contact">
                   Start a project

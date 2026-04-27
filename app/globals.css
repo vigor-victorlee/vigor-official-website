@@ -299,9 +299,10 @@
 .mega-panel {
   position: absolute;
   left: 50%;
-  top: 72px;
+  top: 116px;
   transform: translateX(-50%);
-  width: min(1120px, calc(100vw - 32px));
+  width: min(1200px, calc(100vw - 48px));
+  max-width: calc(100vw - 48px);
   background: linear-gradient(180deg, #0c0c12 0%, #08080c 100%);
   border: 1px solid var(--border-on-dark);
   border-radius: 18px;
@@ -309,9 +310,11 @@
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
   pointer-events: auto;
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: minmax(0, 1fr) 260px;
   gap: 28px;
+  box-sizing: border-box;
 }
+.mega-panel > * { min-width: 0; }
 .mega-head {
   grid-column: 1 / -1;
   display: flex;
@@ -338,9 +341,11 @@
 }
 .mega-cols {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+  min-width: 0;
 }
+.mega-col { min-width: 0; }
 .mega-col h5 {
   margin: 0 0 10px;
   font-size: 11px;
@@ -413,6 +418,9 @@
 }
 .mega-feature a:hover { color: rgba(229, 212, 251, 0.9); }
 
+@media (max-width: 1100px) {
+  .mega-panel { grid-template-columns: minmax(0, 1fr); }
+}
 @media (max-width: 960px) {
   .mega-panel { display: none; }
 }
