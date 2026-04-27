@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import HeroSubRotator from "@/components/HeroSubRotator";
 import HeroSpotlight from "@/components/HeroSpotlight";
+import HeroLiveBoard from "@/components/HeroLiveBoard";
 import TrustMarquee from "@/components/TrustMarquee";
 import Reveal from "@/components/Reveal";
 import Projects from "@/components/Projects";
@@ -37,7 +38,10 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="hero-schematic fade-up fade-up-3" aria-hidden="true">
+            <div className="hero-schematic fade-up fade-up-3">
+              <HeroLiveBoard />
+            </div>
+            {/* legacy schematic removed
               <div className="schematic-head">
                 <span>VIGOR · Data spine</span>
                 <span className="live"><span className="pulse" />Live</span>
@@ -102,7 +106,7 @@ export default function Page() {
                 <div className="sf-stat"><div className="k">Latency p99</div><div className="v">42<span className="accent">ms</span></div></div>
                 <div className="sf-stat"><div className="k">Uptime</div><div className="v">99.98<span className="accent">%</span></div></div>
               </div>
-            </div>
+            end of legacy */}
           </div>
         </div>
       </section>

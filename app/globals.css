@@ -2,6 +2,8 @@
 @import "./site.css";
 @import "./inline.css";
 @import "./premium.css";
+@import "./products.css";
+@import "./liveboard.css";
 
 /* ====== thevigor.co-style nav (override the old .nav) ====== */
 .nav { display: none !important; }
