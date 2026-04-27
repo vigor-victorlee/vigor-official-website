@@ -14,62 +14,65 @@ export type MenuData = {
 };
 
 export const MENUS: Record<string, MenuData> = {
-  services: {
-    title: "Services",
-    lede: "Engineer-led advisory & build. Six capabilities, one opinionated team.",
-    cta: { label: "See all services →", href: "/services" },
+  capabilities: {
+    title: "Capabilities",
+    lede: "Five disciplines, one engineering team. From the PLC up to the agent.",
+    cta: { label: "All capabilities →", href: "/capabilities" },
     cols: [
       {
-        heading: "Intelligence",
+        heading: "Build",
         items: [
-          { label: "AI & LLM Systems", href: "/services#ai-llm", desc: "Domain-tuned agents for industrial workflows." },
-          { label: "Engineering Advisory", href: "/services#advisory", desc: "Two-week diagnostics. Opinionated recs." },
+          { label: "Engineering", href: "/capabilities/engineering", desc: "Mobile, web, firmware — operator-grade software." },
+          { label: "IoT", href: "/capabilities/iot", desc: "Non-invasive retrofit on legacy machines." },
+          { label: "Cloud", href: "/capabilities/cloud", desc: "Industrial-grade hybrid infra. Identity-first." },
         ],
       },
       {
-        heading: "Floor & data",
+        heading: "Intelligence",
         items: [
-          { label: "Industrial IoT", href: "/services#iiot", desc: "Non-invasive retrofit on legacy machines." },
-          { label: "Integration & Data", href: "/services#integration", desc: "ERP, MES, PLC, SCADA on one plane." },
-          { label: "Cloud & Edge", href: "/services#cloud", desc: "Industrial-grade infra. Hybrid by default." },
+          { label: "Data Analytics", href: "/capabilities/data-engineering", desc: "ERP, MES, PLC, SCADA on one queryable plane." },
+          { label: "AI / Machine Learning", href: "/capabilities/machine-learning", desc: "Domain-tuned agents, not chatbots." },
         ],
       },
       {
         heading: "Compliance",
         items: [
-          { label: "ESG & CBAM", href: "/services#esg", desc: "Auditable carbon, wired to the floor." },
+          { label: "ESG & CBAM", href: "/capabilities/esg", desc: "Auditable carbon, wired to the floor." },
+          { label: "Engineering Advisory", href: "/capabilities/advisory", desc: "Two-week diagnostics. Opinionated recs." },
         ],
       },
     ],
     feature: {
       eyebrow: "Featured engagement",
       title: "Two-week diagnostic",
-      desc: "On-site, on the floor. We instrument and write down the problem in a way you can verify.",
-      href: "/services#engagement",
+      desc: "On-site, on the floor. We instrument and write the problem in a way you can verify.",
+      href: "/capabilities#engagement",
     },
   },
-  products: {
-    title: "Products",
-    lede: "Operator-built products that ship. One engineering spine.",
-    cta: { label: "See all products →", href: "/products" },
+  solutions: {
+    title: "Solutions",
+    lede: "Six verticals. Operator-built deeptech where uptime, accuracy, and audit pressure are real.",
+    cta: { label: "All solutions →", href: "/solutions" },
     cols: [
       {
-        heading: "In market",
+        heading: "Operations",
         items: [
-          { label: "Xentr.AI", href: "/products#xentrai", desc: "Non-invasive IIoT + agentic AI for the floor.", status: "live" },
+          { label: "Manufacturing", href: "/solutions/manufacturing", desc: "Non-invasive IIoT, factory analytics, frontier ops." },
+          { label: "Smart City", href: "/solutions/smart-city", desc: "Traffic AI, edge IoT, city-scale data spines." },
         ],
       },
       {
-        heading: "In design",
+        heading: "People",
         items: [
-          { label: "VIGOR ESG", href: "/products#esg", desc: "CBAM-native compliance. APAC-built.", status: "preview" },
+          { label: "Healthcare", href: "/solutions/healthcare", desc: "Hospital superapps, clinical workflows, NLP." },
+          { label: "Retail & F&B", href: "/solutions/retail", desc: "Loyalty, ordering, store ops at scale." },
         ],
       },
       {
-        heading: "Programs",
+        heading: "Public & immersive",
         items: [
-          { label: "Design partner program", href: "/contact?topic=design-partner", desc: "Co-build the next product in the portfolio." },
-          { label: "Pilot program", href: "/contact?topic=pilot", desc: "Live retrofit pilot on one line." },
+          { label: "Digital Government", href: "/solutions/government", desc: "VMS, ESG, citizen platforms." },
+          { label: "Immersive", href: "/solutions/immersive", desc: "3D wayfinding, spatial, AR/VR.", status: "live" },
         ],
       },
     ],
@@ -78,34 +81,6 @@ export const MENUS: Record<string, MenuData> = {
       title: "Xentr.AI",
       desc: "Live in market. Retrofit a legacy CNC in four weeks — agent-grade insight on day 30.",
       href: "/products#xentrai",
-    },
-  },
-  about: {
-    title: "About",
-    lede: "Operator-built deeptech, from Penang. Backed by Malaysia's innovation infrastructure.",
-    cta: { label: "See the company →", href: "/about" },
-    cols: [
-      {
-        heading: "Company",
-        items: [
-          { label: "Why VIGOR exists", href: "/about#story", desc: "The room we're building in." },
-          { label: "How we're structured", href: "/about#structure", desc: "Advisory + portfolio. Two arms." },
-          { label: "Engineering principles", href: "/about#principles", desc: "Six rules that show up everywhere." },
-        ],
-      },
-      {
-        heading: "Posture",
-        items: [
-          { label: "Three pillars", href: "/about#pillars", desc: "Data, automation, compliance." },
-          { label: "Accreditation", href: "/about#accreditation", desc: "SIRIM · MIMOS · MIDA · NCER · MIDF." },
-        ],
-      },
-    ],
-    feature: {
-      eyebrow: "Manifesto",
-      title: "Built by manufacturers, not theorists.",
-      desc: "We've stood on the floors we now instrument. That's the standard we ship to.",
-      href: "/#manifesto",
     },
   },
 };

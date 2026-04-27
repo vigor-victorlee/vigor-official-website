@@ -1,5 +1,7 @@
 import Nav from "@/components/Nav";
 import HeroRotator from "@/components/HeroRotator";
+import HeroSpotlight from "@/components/HeroSpotlight";
+import TrustMarquee from "@/components/TrustMarquee";
 import Reveal from "@/components/Reveal";
 import Projects from "@/components/Projects";
 import PopupCTA from "@/components/PopupCTA";
@@ -11,6 +13,7 @@ export default function Page() {
 
       {/* HERO */}
       <section className="hero">
+        <HeroSpotlight />
         <div className="container-wide">
           <div className="hero-grid">
             <div className="hero-left reveal">
@@ -115,30 +118,9 @@ export default function Page() {
       {/* TRUSTED BY */}
       <div className="trust-strip" id="trusted">
         <div className="container-wide">
-          <div className="trust-strip-inner">
-            <div className="label">Trusted by</div>
-            <div className="marks logos">
-              <span className="logo logo-microsoft" title="Microsoft">
-                <svg viewBox="0 0 23 23" aria-hidden="true">
-                  <rect x="1" y="1" width="10" height="10" fill="#F25022" />
-                  <rect x="12" y="1" width="10" height="10" fill="#7FBA00" />
-                  <rect x="1" y="12" width="10" height="10" fill="#00A4EF" />
-                  <rect x="12" y="12" width="10" height="10" fill="#FFB900" />
-                </svg>
-                <span>Microsoft</span>
-              </span>
-              <span className="logo logo-dell" title="Dell Technologies">
-                <svg viewBox="0 0 100 28" aria-hidden="true">
-                  <circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" strokeWidth="1.4" />
-                  <text x="7" y="19" fontFamily="Manrope, sans-serif" fontSize="13" fontWeight="800" fill="currentColor">D</text>
-                  <text x="33" y="21" fontFamily="Manrope, sans-serif" fontSize="15" fontWeight="700" fill="currentColor" letterSpacing="-0.5">Technologies</text>
-                </svg>
-              </span>
-              <span className="logo" title="SIRIM"><span className="wm">SIRIM</span></span>
-              <span className="logo" title="MIMOS"><span className="wm">MIMOS</span></span>
-              <span className="logo" title="NCER"><span className="wm">NCER</span></span>
-              <span className="logo" title="ISO 27001"><span className="wm">ISO 27001</span></span>
-            </div>
+          <div className="trust-strip-inner" style={{ flexDirection: "column", gap: 18, alignItems: "stretch" }}>
+            <div className="label" style={{ textAlign: "center" }}>Trusted by · Backed by Malaysia&apos;s innovation infrastructure</div>
+            <TrustMarquee />
           </div>
         </div>
       </div>
@@ -158,42 +140,42 @@ export default function Page() {
             </div>
 
             <div className="industries-grid">
-              <a className="ind-card reveal" href="#projects">
+              <a className="ind-card reveal lift-card" href="#projects">
                 <div className="ind-num">Vertical 01</div>
                 <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M2 20h20M4 20V10l5 4V10l5 4V6l5 4v10" /><path d="M9 20v-4M14 20v-4" /></svg>
                 <h3>Manufacturing</h3>
                 <p>Non-invasive IIoT, factory analytics, frontier ops apps, and prop-jig with embedded testing software.</p>
                 <div className="ind-tags"><span>Xentr.AI</span><span>IIoT</span><span>Frontier ops</span></div>
               </a>
-              <a className="ind-card reveal" href="#projects">
+              <a className="ind-card reveal lift-card" href="#projects">
                 <div className="ind-num">Vertical 02</div>
                 <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14V8a2 2 0 0 0-2-2h-3V3h-4v3H7a2 2 0 0 0-2 2v6" /><path d="M12 9v6M9 12h6" /><path d="M3 14h18l-2 7H5z" /></svg>
                 <h3>Healthcare</h3>
                 <p>Hospital superapps, post-surgery sentiment analysis, clinical workflow systems, and patient-facing mobile.</p>
                 <div className="ind-tags"><span>Superapp</span><span>NLP</span><span>Mobile</span></div>
               </a>
-              <a className="ind-card reveal" href="#projects">
+              <a className="ind-card reveal lift-card" href="#projects">
                 <div className="ind-num">Vertical 03</div>
                 <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6" /></svg>
                 <h3>Digital Government</h3>
                 <p>Citizen platforms, vendor management systems, ESG reporting, and grant-aligned R&amp;D infrastructure.</p>
                 <div className="ind-tags"><span>ESG</span><span>VMS</span><span>Citizen</span></div>
               </a>
-              <a className="ind-card reveal" href="#projects">
+              <a className="ind-card reveal lift-card" href="#projects">
                 <div className="ind-num">Vertical 04</div>
                 <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 1v6M12 17v6M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M1 12h6M17 12h6M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /></svg>
                 <h3>Smart City</h3>
                 <p>Traffic analytics, intersection intelligence, edge IoT meshes, and city-scale data spines.</p>
                 <div className="ind-tags"><span>Traffic AI</span><span>Edge IoT</span><span>Analytics</span></div>
               </a>
-              <a className="ind-card reveal" href="#projects">
+              <a className="ind-card reveal lift-card" href="#projects">
                 <div className="ind-num">Vertical 05</div>
                 <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7h18l-2 13H5z" /><path d="M8 7V5a4 4 0 0 1 8 0v2" /></svg>
                 <h3>Retail &amp; F&amp;B</h3>
                 <p>Customer-facing superapps, loyalty engines, CRM, and operations frontiers for high-volume chains.</p>
                 <div className="ind-tags"><span>Superapp</span><span>CRM</span><span>Loyalty</span></div>
               </a>
-              <a className="ind-card reveal" href="#projects">
+              <a className="ind-card reveal lift-card" href="#projects">
                 <div className="ind-num">Vertical 06</div>
                 <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5z" /><path d="M2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
                 <h3>Immersive &amp; Entertainment</h3>
@@ -238,7 +220,7 @@ export default function Page() {
             </div>
 
             <div className="arms-grid">
-              <article className="arm-card reveal">
+              <article className="arm-card reveal beam-card lift-card">
                 <div className="arm-num">Arm 01 / Advisory &amp; Build</div>
                 <h3>Engineer-led<br />digital transformation.</h3>
                 <p>Short engagements. Opinionated recommendations. We architect, build, and hand over — never indefinite consulting.</p>
@@ -251,7 +233,7 @@ export default function Page() {
                 <a className="arm-link" href="#contact">Explore services →</a>
               </article>
 
-              <article className="arm-card reveal">
+              <article className="arm-card reveal beam-card lift-card">
                 <div className="arm-num">Arm 02 / Product portfolio</div>
                 <h3>Operator-built<br />products that ship.</h3>
                 <p>Each product carries the VIGOR foundation — type, motion, iconography, engineering posture — and earns its own accent identity.</p>
@@ -283,49 +265,49 @@ export default function Page() {
             </div>
 
             <div className="cap-grid">
-              <div className="cap-cell reveal">
+              <div className="cap-cell reveal lift-card">
                 <span className="num">/01</span>
                 <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /><circle cx="12" cy="12" r="3" /></svg>
                 <h4>AI &amp; LLM Systems</h4>
                 <p>Domain-tuned agents for inspection, scheduling, shop-floor decisions. Not chatbots — operators.</p>
               </div>
-              <div className="cap-cell reveal">
+              <div className="cap-cell reveal lift-card">
                 <span className="num">/02</span>
                 <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /><path d="M10 6.5h4M10 17.5h4M6.5 10v4M17.5 10v4" /></svg>
                 <h4>Industrial IoT</h4>
                 <p>Non-invasive retrofit on legacy machines. CI-grade observability without ripping the floor.</p>
               </div>
-              <div className="cap-cell reveal">
+              <div className="cap-cell reveal lift-card">
                 <span className="num">/03</span>
                 <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12h3l3-7 6 14 3-7h3" /></svg>
                 <h4>ESG &amp; CBAM</h4>
                 <p>Auditable carbon and ESG reporting wired to the same data spine. Built for APAC exporters.</p>
               </div>
-              <div className="cap-cell reveal">
+              <div className="cap-cell reveal lift-card">
                 <span className="num">/04</span>
                 <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="8" height="8" rx="1" /><rect x="13" y="13" width="8" height="8" rx="1" /><path d="M11 7h4a2 2 0 0 1 2 2v4" /></svg>
                 <h4>Integrations</h4>
                 <p>ERP, MES, PLC, SCADA tied into one queryable plane. We&apos;ve stitched them all.</p>
               </div>
-              <div className="cap-cell reveal">
+              <div className="cap-cell reveal lift-card">
                 <span className="num">/05</span>
                 <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 0 1-9 9M21 12a9 9 0 0 0-9-9M3 12a9 9 0 0 1 9-9M3 12a9 9 0 0 0 9 9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></svg>
                 <h4>Cloud Infrastructure</h4>
                 <p>Private and hybrid clouds engineered for industrial workloads — not generic SaaS.</p>
               </div>
-              <div className="cap-cell reveal">
+              <div className="cap-cell reveal lift-card">
                 <span className="num">/06</span>
                 <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6M9 13l2 2 4-4" /></svg>
                 <h4>Test Automation</h4>
                 <p>Quality systems and inspection pipelines that survive shift changes and floor reality.</p>
               </div>
-              <div className="cap-cell reveal">
+              <div className="cap-cell reveal lift-card">
                 <span className="num">/07</span>
                 <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="3" /><path d="M5 21a7 7 0 0 1 14 0" /></svg>
                 <h4>Engineering Advisory</h4>
                 <p>Engineer-led, opinionated, short engagements. Recommendations you can ship Monday.</p>
               </div>
-              <div className="cap-cell reveal">
+              <div className="cap-cell reveal lift-card">
                 <span className="num">/08</span>
                 <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7" /><path d="M3 7l9 6 9-6M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2" /></svg>
                 <h4>Maintenance &amp; Support</h4>
@@ -351,7 +333,7 @@ export default function Page() {
             </div>
 
             <div className="products-stack">
-              <article className="product-card reveal">
+              <article className="product-card reveal beam-card">
                 <div>
                   <div className="product-mark">Product 01 · Factory operating system</div>
                   <h3>Xentr.AI</h3>
@@ -392,7 +374,7 @@ export default function Page() {
                 </div>
               </article>
 
-              <article className="product-card reveal">
+              <article className="product-card reveal beam-card">
                 <div>
                   <div className="product-mark">Product 02 · ESG &amp; CBAM compliance</div>
                   <h3>VIGOR ESG</h3>

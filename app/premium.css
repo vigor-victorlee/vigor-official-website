@@ -1,0 +1,156 @@
+/* ============================================================================
+   Premium animation layer (Aceternity-inspired)
+   ============================================================================ */
+
+/* ---- Hero spotlight (cursor-tracked gradient glow) ---- */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.hero-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    600px circle at var(--mx, 50%) var(--my, 30%),
+    rgba(106, 13, 221, 0.32),
+    transparent 60%
+  );
+  transition: background 80ms ease;
+}
+.hero > .container-wide { position: relative; z-index: 1; }
+
+/* ---- Beam border (rotating conic outline on hover) ---- */
+.beam-card {
+  position: relative;
+  isolation: isolate;
+}
+.beam-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    rgba(106, 13, 221, 0.9) 90deg,
+    rgba(183, 139, 255, 0.95) 130deg,
+    transparent 200deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 280ms ease;
+  pointer-events: none;
+  z-index: -1;
+}
+.beam-card:hover::before {
+  opacity: 1;
+  animation: beam-rotate 6s linear infinite;
+}
+@keyframes beam-rotate {
+  to { --beam-angle: 360deg; }
+}
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* ---- Marquee (infinite trust-strip scroll) ---- */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
+}
+.marquee-track {
+  display: flex;
+  gap: 56px;
+  width: max-content;
+  animation: marquee-slide 38s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee-slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  min-width: 130px;
+  flex-shrink: 0;
+}
+.marquee-item img {
+  max-height: 48px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.72;
+  filter: grayscale(1) brightness(0) invert(1);
+  transition: opacity 220ms ease, filter 220ms ease;
+}
+.marquee-item:hover img {
+  opacity: 1;
+  filter: grayscale(0) brightness(1) invert(0);
+}
+
+/* ---- Magnetic button micro-interaction ---- */
+.magnetic { transition: transform 200ms cubic-bezier(0.2, 0.7, 0.1, 1); }
+
+/* ---- Card lift + sheen on hover ---- */
+.lift-card {
+  transition: transform 320ms cubic-bezier(0.2, 0.7, 0.1, 1),
+              box-shadow 320ms ease,
+              border-color 320ms ease;
+}
+.lift-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(106, 13, 221, 0.18);
+  border-color: rgba(183, 139, 255, 0.32);
+}
+
+/* ---- Glow ring around hero CTA ---- */
+.hero-ctas .btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+.hero-ctas .btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: radial-gradient(circle at 30% 50%, rgba(183, 139, 255, 0.55), transparent 60%);
+  opacity: 0;
+  transition: opacity 240ms ease;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-ctas .btn-primary:hover::after { opacity: 1; }
+.hero-ctas .btn-primary > * { position: relative; z-index: 1; }
+
+/* ---- Stagger reveal helper ---- */
+.fade-up {
+  animation: fade-up 700ms cubic-bezier(0.2, 0.7, 0.1, 1) both;
+}
+.fade-up-1 { animation-delay: 80ms; }
+.fade-up-2 { animation-delay: 160ms; }
+.fade-up-3 { animation-delay: 240ms; }
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---- Mobile drawer polish ---- */
+@media (max-width: 720px) {
+  .marquee-track { gap: 36px; animation-duration: 32s; }
+  .marquee-item { height: 44px; min-width: 100px; }
+  .marquee-item img { max-height: 36px; }
+}

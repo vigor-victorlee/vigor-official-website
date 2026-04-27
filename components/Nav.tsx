@@ -1,16 +1,21 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { MENUS } from "@/lib/menus";
 import MegaMenu from "./MegaMenu";
 import MobileDrawer from "./MobileDrawer";
 
-const NAV_ITEMS = [
-  { label: "Services", href: "/services", mm: "services" },
-  { label: "Products", href: "/products", mm: "products" },
-  { label: "About", href: "/about", mm: "about" },
+const MAIN_NAV = [
+  { label: "Capabilities", mm: "capabilities", hasDropdown: true },
+  { label: "Solutions", mm: "solutions", hasDropdown: true },
+];
+
+const UTILITY_NAV = [
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
+  { label: "Career", href: "/career" },
 ];
 
 export default function Nav() {
@@ -42,61 +47,79 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="nav" onMouseLeave={scheduleClose}>
-        <div className="nav-inner">
-          <a href="#" className="brand" aria-label="VIGOR home">
-            <span className="mark">
-              <svg viewBox="0 0 200 200" fill="none">
-                <g
-                  stroke="currentColor"
-                  strokeWidth="14"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  fill="none"
-                >
-                  <path d="M 50 30 L 50 70 L 78 98" />
-                  <path d="M 150 30 L 150 70 L 122 98" />
-                  <path d="M 78 98 L 100 76 L 122 98" />
-                  <path d="M 36 88 L 36 124 Q 36 146 58 146 L 100 178 L 142 146 Q 164 146 164 124 L 164 88" />
-                </g>
-              </svg>
-            </span>
-            <span className="word">VIGOR</span>
-          </a>
-
-          <div className="nav-links">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onMouseEnter={() => {
-                  cancelClose();
-                  setOpenMm(item.mm ?? null);
-                }}
-                onFocus={() => setOpenMm(item.mm ?? null)}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-
-          <div className="nav-actions">
-            <a className="btn btn-primary btn-sm" href="#contact">
-              Start a project
-            </a>
-            <button
-              type="button"
-              className="nav-burger"
-              aria-label="Open menu"
-              onClick={() => setDrawerOpen(true)}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <path d="M3 6h18M3 12h18M3 18h18" />
+      <header className="vigor-nav-root" onMouseLeave={scheduleClose}>
+        {/* Top utility bar */}
+        <div className="utility-bar">
+          <div className="utility-inner">
+            <button type="button" className="lang-pill" aria-label="Language">
+              <Image src="/assets/UKFlag.png" alt="" width={20} height={14} />
+              <span>English</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 9l6 6 6-6" />
               </svg>
             </button>
+            <nav className="utility-links">
+              {UTILITY_NAV.map((u) => (
+                <a key={u.label} href={u.href}>
+                  {u.label}
+                </a>
+              ))}
+            </nav>
           </div>
         </div>
-      </nav>
+
+        {/* Main bar */}
+        <div className="main-bar">
+          <div className="main-inner">
+            <a href="/" className="vigor-logo" aria-label="VIGOR home">
+              <Image
+                src="/assets/VigorLogo.png"
+                alt="Vigor Digital"
+                width={154}
+                height={58}
+                priority
+              />
+            </a>
+
+            <nav className="main-links" aria-label="Main">
+              {MAIN_NAV.map((item) => (
+                <button
+                  key={item.label}
+                  type="button"
+                  className={`main-link${openMm === item.mm ? " is-open" : ""}`}
+                  onMouseEnter={() => {
+                    cancelClose();
+                    setOpenMm(item.mm);
+                  }}
+                  onFocus={() => setOpenMm(item.mm)}
+                  onClick={() => setOpenMm(openMm === item.mm ? null : item.mm)}
+                >
+                  {item.label}
+                  <svg className="caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+              ))}
+            </nav>
+
+            <div className="main-actions">
+              <a href="/contact" className="get-started">
+                <span>Get Started</span>
+              </a>
+              <button
+                type="button"
+                className="nav-burger"
+                aria-label="Open menu"
+                onClick={() => setDrawerOpen(true)}
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M3 6h18M3 12h18M3 18h18" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
 
       <AnimatePresence>
         {openMm && MENUS[openMm] ? (
@@ -118,7 +141,14 @@ export default function Nav() {
 
       <AnimatePresence>
         {drawerOpen ? (
-          <MobileDrawer onClose={() => setDrawerOpen(false)} navItems={NAV_ITEMS} />
+          <MobileDrawer
+            onClose={() => setDrawerOpen(false)}
+            navItems={[
+              { label: "Capabilities", href: "/capabilities" },
+              { label: "Solutions", href: "/solutions" },
+              ...UTILITY_NAV,
+            ]}
+          />
         ) : null}
       </AnimatePresence>
     </>
