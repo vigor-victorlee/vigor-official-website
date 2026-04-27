@@ -16,7 +16,7 @@ export default function Page() {
         <HeroSpotlight />
         <div className="container-wide">
           <div className="hero-grid">
-            <div className="hero-left reveal">
+            <div className="hero-left fade-up fade-up-1">
               <div className="hero-eyebrow">
                 <span className="dot" />
                 Six industries · One engineering practice
@@ -45,7 +45,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="hero-schematic reveal" aria-hidden="true">
+            <div className="hero-schematic fade-up fade-up-3" aria-hidden="true">
               <div className="schematic-head">
                 <span>VIGOR · Data spine</span>
                 <span className="live"><span className="pulse" />Live</span>
