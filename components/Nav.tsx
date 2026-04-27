@@ -7,10 +7,10 @@ import MegaMenu from "./MegaMenu";
 import MobileDrawer from "./MobileDrawer";
 
 const NAV_ITEMS = [
-  { label: "Industries", href: "#industries", mm: "industries" },
-  { label: "Products", href: "#products", mm: "products" },
-  { label: "Projects", href: "#projects", mm: "projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "/services", mm: "services" },
+  { label: "Products", href: "/products", mm: "products" },
+  { label: "About", href: "/about", mm: "about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Nav() {

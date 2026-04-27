@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import HeroRotator from "@/components/HeroRotator";
 import Reveal from "@/components/Reveal";
 import Projects from "@/components/Projects";
+import PopupCTA from "@/components/PopupCTA";
 
 export default function Page() {
   return (
@@ -126,11 +127,17 @@ export default function Page() {
                 </svg>
                 <span>Microsoft</span>
               </span>
+              <span className="logo logo-dell" title="Dell Technologies">
+                <svg viewBox="0 0 100 28" aria-hidden="true">
+                  <circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" strokeWidth="1.4" />
+                  <text x="7" y="19" fontFamily="Manrope, sans-serif" fontSize="13" fontWeight="800" fill="currentColor">D</text>
+                  <text x="33" y="21" fontFamily="Manrope, sans-serif" fontSize="15" fontWeight="700" fill="currentColor" letterSpacing="-0.5">Technologies</text>
+                </svg>
+              </span>
               <span className="logo" title="SIRIM"><span className="wm">SIRIM</span></span>
               <span className="logo" title="MIMOS"><span className="wm">MIMOS</span></span>
               <span className="logo" title="NCER"><span className="wm">NCER</span></span>
               <span className="logo" title="ISO 27001"><span className="wm">ISO 27001</span></span>
-              <span className="logo" title="MIDA"><span className="wm">MIDA</span></span>
             </div>
           </div>
         </div>
@@ -151,24 +158,48 @@ export default function Page() {
             </div>
 
             <div className="industries-grid">
-              {[
-                { num: "Vertical 01", title: "Manufacturing", desc: "Non-invasive IIoT, factory analytics, frontier ops apps, and prop-jig with embedded testing software.", tags: ["Xentr.AI", "IIoT", "Frontier ops"] },
-                { num: "Vertical 02", title: "Healthcare", desc: "Hospital superapps, post-surgery sentiment analysis, clinical workflow systems, and patient-facing mobile.", tags: ["Superapp", "NLP", "Mobile"] },
-                { num: "Vertical 03", title: "Digital Government", desc: "Citizen platforms, vendor management systems, ESG reporting, and grant-aligned R&D infrastructure.", tags: ["ESG", "VMS", "Citizen"] },
-                { num: "Vertical 04", title: "Smart City", desc: "Traffic analytics, intersection intelligence, edge IoT meshes, and city-scale data spines.", tags: ["Traffic AI", "Edge IoT", "Analytics"] },
-                { num: "Vertical 05", title: "Retail & F&B", desc: "Customer-facing superapps, loyalty engines, CRM, and operations frontiers for high-volume chains.", tags: ["Superapp", "CRM", "Loyalty"] },
-                { num: "Vertical 06", title: "Immersive & Entertainment", desc: "3D wayfinding, spatial experiences, AR/VR pilots, and interactive venue installations.", tags: ["3D", "Wayfinding", "Spatial"] },
-              ].map((i) => (
-                <a key={i.title} className="ind-card reveal" href="#projects">
-                  <div className="ind-num">{i.num}</div>
-                  <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="3" />
-                  </svg>
-                  <h3>{i.title}</h3>
-                  <p>{i.desc}</p>
-                  <div className="ind-tags">{i.tags.map((t) => <span key={t}>{t}</span>)}</div>
-                </a>
-              ))}
+              <a className="ind-card reveal" href="#projects">
+                <div className="ind-num">Vertical 01</div>
+                <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M2 20h20M4 20V10l5 4V10l5 4V6l5 4v10" /><path d="M9 20v-4M14 20v-4" /></svg>
+                <h3>Manufacturing</h3>
+                <p>Non-invasive IIoT, factory analytics, frontier ops apps, and prop-jig with embedded testing software.</p>
+                <div className="ind-tags"><span>Xentr.AI</span><span>IIoT</span><span>Frontier ops</span></div>
+              </a>
+              <a className="ind-card reveal" href="#projects">
+                <div className="ind-num">Vertical 02</div>
+                <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14V8a2 2 0 0 0-2-2h-3V3h-4v3H7a2 2 0 0 0-2 2v6" /><path d="M12 9v6M9 12h6" /><path d="M3 14h18l-2 7H5z" /></svg>
+                <h3>Healthcare</h3>
+                <p>Hospital superapps, post-surgery sentiment analysis, clinical workflow systems, and patient-facing mobile.</p>
+                <div className="ind-tags"><span>Superapp</span><span>NLP</span><span>Mobile</span></div>
+              </a>
+              <a className="ind-card reveal" href="#projects">
+                <div className="ind-num">Vertical 03</div>
+                <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6" /></svg>
+                <h3>Digital Government</h3>
+                <p>Citizen platforms, vendor management systems, ESG reporting, and grant-aligned R&amp;D infrastructure.</p>
+                <div className="ind-tags"><span>ESG</span><span>VMS</span><span>Citizen</span></div>
+              </a>
+              <a className="ind-card reveal" href="#projects">
+                <div className="ind-num">Vertical 04</div>
+                <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 1v6M12 17v6M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M1 12h6M17 12h6M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /></svg>
+                <h3>Smart City</h3>
+                <p>Traffic analytics, intersection intelligence, edge IoT meshes, and city-scale data spines.</p>
+                <div className="ind-tags"><span>Traffic AI</span><span>Edge IoT</span><span>Analytics</span></div>
+              </a>
+              <a className="ind-card reveal" href="#projects">
+                <div className="ind-num">Vertical 05</div>
+                <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7h18l-2 13H5z" /><path d="M8 7V5a4 4 0 0 1 8 0v2" /></svg>
+                <h3>Retail &amp; F&amp;B</h3>
+                <p>Customer-facing superapps, loyalty engines, CRM, and operations frontiers for high-volume chains.</p>
+                <div className="ind-tags"><span>Superapp</span><span>CRM</span><span>Loyalty</span></div>
+              </a>
+              <a className="ind-card reveal" href="#projects">
+                <div className="ind-num">Vertical 06</div>
+                <svg className="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5z" /><path d="M2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
+                <h3>Immersive &amp; Entertainment</h3>
+                <p>3D wayfinding, spatial experiences, AR/VR pilots, and interactive venue installations.</p>
+                <div className="ind-tags"><span>3D</span><span>Wayfinding</span><span>Spatial</span></div>
+              </a>
             </div>
           </div>
         </section>
@@ -252,23 +283,54 @@ export default function Page() {
             </div>
 
             <div className="cap-grid">
-              {[
-                ["/01", "AI & LLM Systems", "Domain-tuned agents for inspection, scheduling, shop-floor decisions. Not chatbots — operators."],
-                ["/02", "Industrial IoT", "Non-invasive retrofit on legacy machines. CI-grade observability without ripping the floor."],
-                ["/03", "ESG & CBAM", "Auditable carbon and ESG reporting wired to the same data spine. Built for APAC exporters."],
-                ["/04", "Integrations", "ERP, MES, PLC, SCADA tied into one queryable plane. We've stitched them all."],
-                ["/05", "Cloud Infrastructure", "Private and hybrid clouds engineered for industrial workloads — not generic SaaS."],
-                ["/06", "Test Automation", "Quality systems and inspection pipelines that survive shift changes and floor reality."],
-                ["/07", "Engineering Advisory", "Engineer-led, opinionated, short engagements. Recommendations you can ship Monday."],
-                ["/08", "Maintenance & Support", "Long-haul SLAs from the team that built it. No handoff to a managed-service vendor."],
-              ].map(([num, title, body]) => (
-                <div key={title} className="cap-cell reveal">
-                  <span className="num">{num}</span>
-                  <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /></svg>
-                  <h4>{title}</h4>
-                  <p>{body}</p>
-                </div>
-              ))}
+              <div className="cap-cell reveal">
+                <span className="num">/01</span>
+                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /><circle cx="12" cy="12" r="3" /></svg>
+                <h4>AI &amp; LLM Systems</h4>
+                <p>Domain-tuned agents for inspection, scheduling, shop-floor decisions. Not chatbots — operators.</p>
+              </div>
+              <div className="cap-cell reveal">
+                <span className="num">/02</span>
+                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /><path d="M10 6.5h4M10 17.5h4M6.5 10v4M17.5 10v4" /></svg>
+                <h4>Industrial IoT</h4>
+                <p>Non-invasive retrofit on legacy machines. CI-grade observability without ripping the floor.</p>
+              </div>
+              <div className="cap-cell reveal">
+                <span className="num">/03</span>
+                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12h3l3-7 6 14 3-7h3" /></svg>
+                <h4>ESG &amp; CBAM</h4>
+                <p>Auditable carbon and ESG reporting wired to the same data spine. Built for APAC exporters.</p>
+              </div>
+              <div className="cap-cell reveal">
+                <span className="num">/04</span>
+                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="8" height="8" rx="1" /><rect x="13" y="13" width="8" height="8" rx="1" /><path d="M11 7h4a2 2 0 0 1 2 2v4" /></svg>
+                <h4>Integrations</h4>
+                <p>ERP, MES, PLC, SCADA tied into one queryable plane. We&apos;ve stitched them all.</p>
+              </div>
+              <div className="cap-cell reveal">
+                <span className="num">/05</span>
+                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 0 1-9 9M21 12a9 9 0 0 0-9-9M3 12a9 9 0 0 1 9-9M3 12a9 9 0 0 0 9 9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></svg>
+                <h4>Cloud Infrastructure</h4>
+                <p>Private and hybrid clouds engineered for industrial workloads — not generic SaaS.</p>
+              </div>
+              <div className="cap-cell reveal">
+                <span className="num">/06</span>
+                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6M9 13l2 2 4-4" /></svg>
+                <h4>Test Automation</h4>
+                <p>Quality systems and inspection pipelines that survive shift changes and floor reality.</p>
+              </div>
+              <div className="cap-cell reveal">
+                <span className="num">/07</span>
+                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="3" /><path d="M5 21a7 7 0 0 1 14 0" /></svg>
+                <h4>Engineering Advisory</h4>
+                <p>Engineer-led, opinionated, short engagements. Recommendations you can ship Monday.</p>
+              </div>
+              <div className="cap-cell reveal">
+                <span className="num">/08</span>
+                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7" /><path d="M3 7l9 6 9-6M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2" /></svg>
+                <h4>Maintenance &amp; Support</h4>
+                <p>Long-haul SLAs from the team that built it. No handoff to a managed-service vendor.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -302,6 +364,31 @@ export default function Page() {
                 </div>
                 <div className="visual xentr">
                   <div className="badge-status live"><span className="dot" />In market</div>
+                  <svg viewBox="0 0 320 240" style={{ width: "100%", height: "100%", display: "block" }}>
+                    <defs>
+                      <linearGradient id="xen-line" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stopColor="rgba(0,180,255,0.15)" />
+                        <stop offset="50%" stopColor="rgba(0,180,255,0.85)" />
+                        <stop offset="100%" stopColor="rgba(0,180,255,0.15)" />
+                      </linearGradient>
+                    </defs>
+                    <g stroke="rgba(255,255,255,0.08)" strokeWidth="1">
+                      <line x1="40" y1="60" x2="280" y2="60" />
+                      <line x1="40" y1="100" x2="280" y2="100" />
+                      <line x1="40" y1="140" x2="280" y2="140" />
+                      <line x1="40" y1="180" x2="280" y2="180" />
+                    </g>
+                    <path d="M40 150 L 70 130 L 100 140 L 130 90 L 160 110 L 190 70 L 220 95 L 250 80 L 280 60" fill="none" stroke="url(#xen-line)" strokeWidth="2" />
+                    <path d="M40 170 L 70 160 L 100 165 L 130 130 L 160 145 L 190 115 L 220 130 L 250 120 L 280 105" fill="none" stroke="rgba(255,255,255,0.32)" strokeWidth="1" strokeDasharray="3 3" />
+                    <g fontFamily="JetBrains Mono, monospace" fontSize="8" fill="rgba(255,255,255,0.42)">
+                      <text x="40" y="210">06:00</text>
+                      <text x="120" y="210">10:00</text>
+                      <text x="200" y="210">14:00</text>
+                      <text x="260" y="210">18:00</text>
+                    </g>
+                    <text x="40" y="40" fontFamily="Manrope, sans-serif" fontSize="11" fontWeight="700" fill="white" letterSpacing="0.04em">OEE · LINE 03</text>
+                    <text x="220" y="40" fontFamily="JetBrains Mono, monospace" fontSize="14" fontWeight="700" fill="#7ED4FF">94.2%</text>
+                  </svg>
                 </div>
               </article>
 
@@ -318,6 +405,32 @@ export default function Page() {
                 </div>
                 <div className="visual esg">
                   <div className="badge-status preview"><span className="dot" />In design</div>
+                  <svg viewBox="0 0 320 240" style={{ width: "100%", height: "100%", display: "block" }}>
+                    <defs>
+                      <linearGradient id="esg-bar" x1="0" y1="1" x2="0" y2="0">
+                        <stop offset="0%" stopColor="rgba(106,13,221,0.4)" />
+                        <stop offset="100%" stopColor="rgba(229,212,251,0.95)" />
+                      </linearGradient>
+                    </defs>
+                    <text x="40" y="40" fontFamily="Manrope, sans-serif" fontSize="11" fontWeight="700" fill="white" letterSpacing="0.04em">CBAM EMBEDDED EMISSIONS</text>
+                    <text x="220" y="40" fontFamily="JetBrains Mono, monospace" fontSize="11" fill="rgba(255,255,255,0.55)">tCO₂e/Q</text>
+                    <g>
+                      <rect x="50" y="120" width="22" height="80" fill="url(#esg-bar)" rx="2" />
+                      <rect x="86" y="100" width="22" height="100" fill="url(#esg-bar)" rx="2" />
+                      <rect x="122" y="80" width="22" height="120" fill="url(#esg-bar)" rx="2" />
+                      <rect x="158" y="90" width="22" height="110" fill="url(#esg-bar)" rx="2" />
+                      <rect x="194" y="70" width="22" height="130" fill="url(#esg-bar)" rx="2" />
+                      <rect x="230" y="60" width="22" height="140" fill="url(#esg-bar)" rx="2" opacity="0.6" stroke="rgba(229,212,251,0.6)" strokeDasharray="2 2" />
+                    </g>
+                    <g fontFamily="JetBrains Mono, monospace" fontSize="8" fill="rgba(255,255,255,0.42)">
+                      <text x="55" y="216">Q1</text>
+                      <text x="91" y="216">Q2</text>
+                      <text x="127" y="216">Q3</text>
+                      <text x="163" y="216">Q4</text>
+                      <text x="199" y="216">Q1</text>
+                      <text x="235" y="216">FCST</text>
+                    </g>
+                  </svg>
                 </div>
               </article>
             </div>
@@ -401,6 +514,7 @@ export default function Page() {
           </div>
         </div>
       </footer>
+      <PopupCTA />
     </>
   );
 }
