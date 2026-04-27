@@ -12,6 +12,7 @@ export type CarouselCard = {
   body?: ReactNode;
   icon?: ReactNode;
   gradient?: string;
+  image?: string;
 };
 
 export default function AppleCarousel({ cards, idPrefix }: { cards: CarouselCard[]; idPrefix: string }) {
@@ -79,6 +80,13 @@ export default function AppleCarousel({ cards, idPrefix }: { cards: CarouselCard
               background: c.gradient ?? "linear-gradient(180deg, #1a0e2e 0%, #0a0613 100%)",
             }}
           >
+            {c.image ? (
+              <div
+                className="ac-card-image"
+                style={{ backgroundImage: `url(${c.image})` }}
+                aria-hidden="true"
+              />
+            ) : null}
             <div className="ac-card-bg" />
             <div className="ac-card-inner">
               <div className="ac-card-top">
@@ -138,6 +146,13 @@ export default function AppleCarousel({ cards, idPrefix }: { cards: CarouselCard
                 background: cards[active].gradient ?? "linear-gradient(180deg, #1a0e2e 0%, #0a0613 100%)",
               }}
             >
+              {cards[active].image ? (
+                <div
+                  className="ac-modal-image"
+                  style={{ backgroundImage: `url(${cards[active].image})` }}
+                  aria-hidden="true"
+                />
+              ) : null}
               <button
                 type="button"
                 className="ac-modal-close"

@@ -22,35 +22,34 @@
   transition: background 320ms ease, border-color 320ms ease;
 }
 
-/* Resizable: shrink on scroll */
+/* Resizable: shrink on scroll — composited-only transitions (transform/opacity) to avoid jank */
 .vigor-nav-root.is-shrunk {
   background: rgba(8, 8, 12, 0.92);
   border-bottom-color: rgba(106, 13, 221, 0.25);
 }
+.utility-bar {
+  position: relative;
+  will-change: transform, opacity;
+  transform-origin: top center;
+  transition: transform 320ms cubic-bezier(0.2, 0.7, 0.1, 1),
+              opacity 220ms ease;
+}
 .vigor-nav-root.is-shrunk .utility-bar {
-  max-height: 0;
-  overflow: hidden;
+  /* Collapse via scaleY+opacity. Combined with negative margin so the next
+     row slides up smoothly, but the margin stays composited via transform. */
+  transform: scaleY(0);
   opacity: 0;
-  border-bottom-color: transparent;
-  transition: max-height 320ms ease, opacity 220ms ease;
+  pointer-events: none;
+  /* shave the row height in one go after the transition starts */
+  margin-top: -42px;
 }
-.vigor-nav-root .utility-bar {
-  max-height: 50px;
-  opacity: 1;
-  transition: max-height 320ms ease, opacity 220ms ease;
-}
-.vigor-nav-root.is-shrunk .main-inner {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  transition: padding 320ms ease;
+.vigor-nav-root .vigor-logo img {
+  will-change: transform;
+  transform-origin: left center;
+  transition: transform 320ms cubic-bezier(0.2, 0.7, 0.1, 1);
 }
 .vigor-nav-root.is-shrunk .vigor-logo img {
-  height: 30px;
-  transition: height 320ms ease;
-}
-.vigor-nav-root .main-inner,
-.vigor-nav-root .vigor-logo img {
-  transition: padding 320ms ease, height 320ms ease;
+  transform: scale(0.82);
 }
 .utility-bar {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -325,6 +324,10 @@
   inset: 0;
   z-index: 48;
   pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 116px;
 }
 .mega-backdrop {
   position: absolute;
@@ -334,10 +337,7 @@
   pointer-events: auto;
 }
 .mega-panel {
-  position: fixed;
-  left: 50%;
-  top: 116px;
-  transform: translateX(-50%);
+  position: relative;
   width: min(1200px, calc(100vw - 48px));
   max-width: calc(100vw - 48px);
   background: linear-gradient(180deg, #0c0c12 0%, #08080c 100%);

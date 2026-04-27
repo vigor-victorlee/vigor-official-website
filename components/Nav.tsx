@@ -25,8 +25,24 @@ export default function Nav() {
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    let ticking = false;
+    const update = () => {
+      const y = window.scrollY;
+      // hysteresis: only flip past these thresholds, prevents thrash at the boundary
+      setScrolled((prev) => {
+        if (!prev && y > 80) return true;
+        if (prev && y < 24) return false;
+        return prev;
+      });
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
