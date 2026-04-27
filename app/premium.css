@@ -84,17 +84,21 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 56px;          /* shared row height — eye line is the middle */
-  width: 160px;          /* fixed width so spacing is uniform */
+  height: 76px;          /* taller row — gives logos room to breathe */
+  width: 180px;          /* fixed cell width = uniform spacing */
   flex-shrink: 0;
   flex-grow: 0;
+  line-height: 0;        /* eliminate baseline drift */
 }
 .marquee-item img {
-  width: 100%;
-  height: 36px;          /* every logo renders to exactly 36px tall */
-  max-height: 36px;
+  width: auto;
+  max-width: 100%;
+  height: 48px;          /* every logo renders at exactly 48px tall, contained */
+  max-height: 48px;
   object-fit: contain;
+  object-position: center;
   display: block;
+  margin: auto;
   opacity: 0.72;
   filter: grayscale(1) brightness(0) invert(1);
   transition: opacity 220ms ease, filter 220ms ease;
@@ -152,7 +156,7 @@
 
 /* ---- Mobile drawer polish ---- */
 @media (max-width: 720px) {
-  .marquee-track { gap: 32px; animation-duration: 32s; }
-  .marquee-item { height: 44px; width: 120px; }
-  .marquee-item img { height: 28px; max-height: 28px; }
+  .marquee-track { gap: 28px; animation-duration: 32s; }
+  .marquee-item { height: 56px; width: 130px; }
+  .marquee-item img { height: 36px; max-height: 36px; }
 }

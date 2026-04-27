@@ -8,7 +8,7 @@ const ITEMS: Item[] = [
   { src: "/assets/microsoft.svg", alt: "Microsoft" },
   { src: "/assets/dell.svg", alt: "Dell Technologies" },
   { src: "/assets/adventist.png", alt: "Penang Adventist Hospital" },
-  { src: "/assets/sirim.png", alt: "SIRIM" },
+  { src: "/assets/sirim.jpg", alt: "SIRIM" },
   { src: "/assets/mimos.png", alt: "MIMOS Berhad" },
   { src: "/assets/mida.png", alt: "MIDA" },
   { src: "/assets/ncer.png", alt: "NCER" },
