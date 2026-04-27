@@ -207,7 +207,7 @@ export default function Page() {
 
       {/* CAPABILITIES */}
       <Reveal stagger={0.05}>
-        <section className="section capabilities">
+        <section className="section capabilities" id="capabilities">
           <div className="container-wide">
             <div className="section-head reveal">
               <div className="left">
