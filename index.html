@@ -1,0 +1,1766 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VIGOR — Engineered, not pitched.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Operator-built deeptech across manufacturing, healthcare, government, smart city, retail, and immersive. AI agents, IIoT, ESG, mobile, firmware, RPA, cloud — engineered, not pitched.">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/site.css">
+<script type="application/json" id="vigor-tweak-defaults">
+/*EDITMODE-BEGIN*/{
+  "accent": "violet",
+  "heroMood": "cosmic",
+  "cornerRadius": "rounded",
+  "motion": "on",
+  "showAccreditation": true
+}/*EDITMODE-END*/
+</script>
+<style>
+  /* Tweaks-driven hero variants */
+  body[data-hero-mood="minimal"] .hero::before,
+  body[data-hero-mood="minimal"] .page-hero::before { background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(106,13,221,0.10), transparent 60%) !important; }
+  body[data-hero-mood="gradient"] .hero::before,
+  body[data-hero-mood="gradient"] .page-hero::before { background: linear-gradient(135deg, var(--vigor-violet) 0%, var(--vigor-violet-900) 60%, #000 100%) !important; opacity: 0.42; }
+  body[data-hero-mood="grid"] .hero::before,
+  body[data-hero-mood="grid"] .page-hero::before {
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 50%, rgba(106,13,221,0.28), transparent 60%),
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0/40px 40px,
+      #000 !important;
+  }
+  body[data-motion="off"] *, body[data-motion="off"] *::before, body[data-motion="off"] *::after {
+    animation: none !important; transition: none !important;
+  }
+  body[data-accred="off"] .footer-base .accred,
+  body[data-accred="off"] .accred-row { display: none !important; }
+
+  /* ============================================================================
+     Hero rotator — refreshed hero
+  ============================================================================ */
+  .hero-rotator {
+    display: flex; align-items: center; gap: 16px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-pill);
+    margin-bottom: 36px;
+    width: fit-content;
+    max-width: 100%;
+  }
+  .hr-prefix {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); flex-shrink: 0;
+  }
+  .hr-words {
+    position: relative; height: 22px;
+    overflow: hidden; min-width: 220px;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 15px; color: var(--vigor-violet-300);
+    letter-spacing: -0.01em;
+  }
+  .hr-word {
+    position: absolute; left: 0; top: 0;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 360ms ease, transform 360ms cubic-bezier(0.32,0.72,0,1);
+    white-space: nowrap;
+  }
+  .hr-word.active { opacity: 1; transform: none; }
+  .hr-word.exit { opacity: 0; transform: translateY(-8px); }
+
+  /* Trusted-by logo styling */
+  .trust-strip .marks.logos {
+    display: flex; flex-wrap: wrap; gap: 36px 48px;
+    align-items: center;
+  }
+  .trust-strip .logo {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.6);
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 14px; letter-spacing: 0.04em;
+    transition: color 220ms ease, opacity 220ms ease;
+    opacity: 0.85;
+  }
+  .trust-strip .logo:hover { color: #fff; opacity: 1; }
+  .trust-strip .logo svg { height: 22px; width: auto; }
+  .trust-strip .logo-microsoft svg { height: 20px; }
+  .trust-strip .logo-dell svg { height: 24px; }
+  .trust-strip .logo .wm {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    font-size: 14px;
+    padding: 7px 14px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 4px;
+  }
+
+  /* ============================================================================
+     INDUSTRIES section
+  ============================================================================ */
+  .industries-section { background: var(--vigor-black); position: relative; }
+  .industries-section::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(106,13,221,0.14), transparent 60%);
+    pointer-events: none;
+  }
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border-on-dark);
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    position: relative;
+  }
+  .ind-card {
+    background: var(--vigor-black);
+    padding: 36px 32px;
+    position: relative;
+    transition: background 320ms ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .ind-card:hover { background: rgba(106,13,221,0.08); }
+  .ind-card .ind-num {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.18em; color: var(--vigor-violet-300);
+    text-transform: uppercase; margin-bottom: 24px;
+  }
+  .ind-card .ind-icon {
+    width: 36px; height: 36px;
+    color: var(--vigor-violet-300);
+    margin-bottom: 24px;
+    stroke-width: 1.5;
+  }
+  .ind-card h3 {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: 22px; line-height: 1.1; letter-spacing: -0.02em;
+    color: var(--vigor-white); margin: 0 0 12px;
+  }
+  .ind-card p {
+    font-size: 14px; line-height: 1.55;
+    color: rgba(255,255,255,0.68); margin: 0 0 20px;
+    max-width: 36ch;
+  }
+  .ind-card .ind-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .ind-card .ind-tags span {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 4px 10px;
+    background: rgba(106,13,221,0.12);
+    border: 1px solid rgba(106,13,221,0.28);
+    border-radius: 999px;
+    color: var(--vigor-violet-300);
+  }
+
+  /* ============================================================================
+     PROJECTS section
+  ============================================================================ */
+  .projects-section { background: var(--vigor-black); }
+  .proj-filters {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 32px;
+  }
+  .proj-filter {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-on-dark);
+    color: rgba(255,255,255,0.68);
+    padding: 8px 16px; border-radius: 999px;
+    font-family: var(--font-sans); font-size: 13px;
+    font-weight: 500; cursor: pointer;
+    transition: all 200ms ease;
+  }
+  .proj-filter:hover { color: #fff; border-color: rgba(255,255,255,0.32); }
+  .proj-filter.active {
+    background: var(--vigor-violet);
+    border-color: var(--vigor-violet);
+    color: #fff;
+  }
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .proj-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    transition: all 280ms cubic-bezier(0.32,0.72,0,1);
+    display: flex; flex-direction: column;
+    min-height: 240px;
+  }
+  .proj-card:hover {
+    border-color: rgba(106,13,221,0.5);
+    transform: translateY(-2px);
+    background: linear-gradient(180deg, rgba(106,13,221,0.08), rgba(106,13,221,0.02));
+  }
+  .proj-card .proj-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+  }
+  .proj-card .proj-cat {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--vigor-violet-300);
+  }
+  .proj-card .proj-status {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .proj-card .proj-status::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: #4ADE80;
+  }
+  .proj-card.scope .proj-status::before { background: var(--vigor-violet-300); }
+  .proj-card h4 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 18px; line-height: 1.2; letter-spacing: -0.01em;
+    color: var(--vigor-white); margin: 0 0 10px;
+  }
+  .proj-card p {
+    font-size: 13px; line-height: 1.55;
+    color: rgba(255,255,255,0.62); margin: 0 0 auto;
+  }
+  .proj-card .proj-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 20px; padding-top: 16px;
+    border-top: 1px solid var(--border-on-dark);
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+  }
+  .proj-card.hidden { display: none; }
+
+  @media (max-width: 1100px) {
+    .industries-grid { grid-template-columns: repeat(2, 1fr); }
+    .proj-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .industries-grid { grid-template-columns: 1fr; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .hero-rotator { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 16px; }
+    .hr-words { min-width: 0; width: 100%; }
+  }
+
+  /* ============================================================================
+     POPUP CTA
+  ============================================================================ */
+  #pop-cta-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.72);
+    backdrop-filter: blur(6px);
+    z-index: 10001;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 24px;
+    animation: pop-fade 280ms ease;
+  }
+  #pop-cta-overlay.show { display: flex; }
+  @keyframes pop-fade { from { opacity: 0; } to { opacity: 1; } }
+  .pop-cta {
+    width: 100%; max-width: 560px;
+    background: linear-gradient(180deg, #14111E 0%, #0B0A10 100%);
+    border: 1px solid rgba(106,13,221,0.32);
+    border-radius: 18px;
+    padding: 40px;
+    color: #fff;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+    animation: pop-scale 360ms cubic-bezier(0.32,0.72,0,1);
+    position: relative;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+  }
+  @keyframes pop-scale {
+    from { opacity: 0; transform: scale(0.94) translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  .pop-cta .pc-close {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    width: 32px; height: 32px; border-radius: 50%;
+    color: rgba(255,255,255,0.7); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 200ms;
+  }
+  .pop-cta .pc-close:hover { color: #fff; background: rgba(255,255,255,0.12); }
+  .pop-cta .pc-eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--vigor-violet-300); margin-bottom: 16px;
+  }
+  .pop-cta h2 {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: 32px; line-height: 1.05; letter-spacing: -0.02em;
+    color: #fff; margin: 0 0 12px;
+  }
+  .pop-cta .pc-sub {
+    font-size: 14px; line-height: 1.6;
+    color: rgba(255,255,255,0.7); margin: 0 0 28px;
+  }
+  .pop-cta .pc-field { margin-bottom: 16px; }
+  .pop-cta .pc-field label {
+    display: block; font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.62); margin-bottom: 6px;
+  }
+  .pop-cta input, .pop-cta select {
+    width: 100%;
+    background: rgba(0,0,0,0.4); color: #fff;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: var(--font-sans); font-size: 14px;
+    outline: none;
+  }
+  .pop-cta input:focus, .pop-cta select:focus {
+    border-color: var(--vigor-violet);
+    box-shadow: 0 0 0 3px rgba(106,13,221,0.18);
+  }
+  .pop-cta .pc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pop-cta .pc-actions {
+    display: flex; gap: 10px; margin-top: 20px;
+    align-items: center; justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .pop-cta .pc-actions .small {
+    font-size: 11px; color: rgba(255,255,255,0.42); flex: 1;
+  }
+  .pop-cta .pc-success {
+    text-align: center; padding: 12px 0;
+  }
+  .pop-cta .pc-success svg {
+    width: 56px; height: 56px; color: var(--vigor-violet-300);
+    margin-bottom: 16px;
+  }
+  @media (max-width: 540px) {
+    .pop-cta { padding: 28px 24px; }
+    .pop-cta h2 { font-size: 26px; }
+    .pop-cta .pc-row { grid-template-columns: 1fr; }
+  }
+</style>
+<style>
+  /* ============================================================================
+     HOMEPAGE — dark, gradient-forward
+  ============================================================================ */
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0 160px;
+    background: var(--vigor-black);
+    isolation: isolate;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 18% 35%, rgba(106,13,221,0.55) 0%, rgba(106,13,221,0.2) 30%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 85% 80%, rgba(45,46,131,0.55) 0%, rgba(45,46,131,0.18) 35%, transparent 65%),
+      radial-gradient(ellipse 40% 35% at 70% 15%, rgba(229,212,251,0.18) 0%, transparent 60%);
+    z-index: -1;
+  }
+  /* faint engineered grid */
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 80%);
+    z-index: -1;
+    opacity: 0.6;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.78);
+    padding: 8px 16px 8px 12px;
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-pill);
+    background: rgba(255,255,255,0.04);
+    margin-bottom: 32px;
+  }
+  .hero-eyebrow .dot {
+    width: 6px; height: 6px;
+    background: var(--vigor-violet);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--vigor-violet);
+  }
+
+  .hero-headline {
+    font-family: var(--font-display);
+    font-weight: var(--weight-extrabold);
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    color: var(--vigor-white);
+    margin: 0 0 28px;
+    max-width: 14ch;
+  }
+  .hero-headline .accent {
+    background: linear-gradient(110deg, #FFFFFF 0%, #B584F0 30%, #6A0DDD 65%, #4A0AA0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-headline .strike {
+    position: relative;
+    display: inline-block;
+  }
+  .hero-headline .strike::after {
+    content: "";
+    position: absolute;
+    left: -2%; right: -2%;
+    top: 54%; height: 6px;
+    background: var(--vigor-violet);
+    transform: skewY(-2deg);
+    opacity: 0.85;
+  }
+
+  .hero-sub {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: rgba(255,255,255,0.72);
+    max-width: 52ch;
+    margin: 0 0 40px;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-on-dark);
+  }
+  .hero-meta .meta {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .hero-meta .k {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.42);
+    text-transform: uppercase;
+  }
+  .hero-meta .v {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-xl);
+    color: var(--vigor-white);
+    letter-spacing: -0.01em;
+  }
+
+  /* Hero right column — diagram-grade schematic card */
+  .hero-schematic {
+    position: relative;
+    aspect-ratio: 1 / 1.05;
+    background: rgba(11,10,16,0.72);
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+  }
+  .hero-schematic::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 90% 70% at 30% 30%, rgba(106,13,221,0.18), transparent 65%);
+    pointer-events: none;
+  }
+  .schematic-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-on-dark);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+  }
+  .schematic-head .live {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--vigor-violet-300);
+  }
+  .schematic-head .live .pulse {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--vigor-violet);
+    animation: pulse 1.6s var(--ease-out) infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(0.85); }
+    50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 12px var(--vigor-violet); }
+  }
+  .schematic-body {
+    padding: 28px 20px;
+    height: calc(100% - 49px);
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .schematic-svg {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+  }
+  .schematic-foot {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-on-dark);
+  }
+  .sf-stat .k {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.42);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .sf-stat .v {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: 22px;
+    color: var(--vigor-white);
+    letter-spacing: -0.02em;
+    font-feature-settings: "tnum" 1, "lnum" 1;
+  }
+  .sf-stat .v .accent { color: var(--vigor-violet-300); }
+
+  /* ============================================================================
+     WHAT WE DO — two arms
+  ============================================================================ */
+  .arms {
+    background: var(--vigor-black);
+    position: relative;
+  }
+  .arms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .arm-card {
+    position: relative;
+    background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-xl);
+    padding: 48px 40px;
+    overflow: hidden;
+    transition: all var(--duration-slow) var(--ease-emphatic);
+    isolation: isolate;
+  }
+  .arm-card:hover {
+    border-color: rgba(106,13,221,0.5);
+    transform: translateY(-2px);
+  }
+  .arm-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: radial-gradient(ellipse 60% 50% at 80% 0%, rgba(106,13,221,0.22), transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--duration-slow) var(--ease-emphatic);
+  }
+  .arm-card:hover::before { opacity: 1; }
+
+  .arm-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--vigor-violet-300);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .arm-card h3 {
+    font-family: var(--font-display);
+    font-weight: var(--weight-extrabold);
+    font-size: var(--text-3xl);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--vigor-white);
+    margin: 0 0 16px;
+  }
+  .arm-card p {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: rgba(255,255,255,0.68);
+    margin: 0 0 32px;
+    max-width: 38ch;
+  }
+  .arm-bullets {
+    list-style: none; padding: 0; margin: 0 0 32px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .arm-bullets li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,0.78);
+  }
+  .arm-bullets li svg {
+    flex-shrink: 0;
+    width: 16px; height: 16px;
+    color: var(--vigor-violet-300);
+    margin-top: 2px;
+  }
+  .arm-card .arm-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--vigor-white);
+    border-bottom: 1px solid rgba(255,255,255,0.32);
+    padding-bottom: 6px;
+    transition: all var(--duration-fast) var(--ease-standard);
+  }
+  .arm-card .arm-link:hover { color: var(--vigor-violet-300); border-color: var(--vigor-violet-300); }
+
+  /* ============================================================================
+     CAPABILITIES GRID
+  ============================================================================ */
+  .capabilities { background: var(--vigor-black); }
+  .cap-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border-on-dark);
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .cap-cell {
+    background: var(--vigor-black);
+    padding: 36px 28px 32px;
+    transition: background var(--duration-base) var(--ease-standard);
+    position: relative;
+    cursor: pointer;
+  }
+  .cap-cell:hover { background: rgba(106,13,221,0.06); }
+  .cap-cell .ico {
+    width: 36px; height: 36px;
+    color: var(--vigor-violet-300);
+    margin-bottom: 28px;
+    stroke-width: 1.5;
+  }
+  .cap-cell h4 {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--vigor-white);
+    margin: 0 0 12px;
+  }
+  .cap-cell p {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    color: rgba(255,255,255,0.62);
+    margin: 0;
+  }
+  .cap-cell .num {
+    position: absolute;
+    top: 20px; right: 20px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.32);
+  }
+
+  /* ============================================================================
+     PRODUCTS PREVIEW
+  ============================================================================ */
+  .products {
+    background: var(--vigor-black);
+    position: relative;
+    overflow: hidden;
+  }
+  .products::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 40% at 80% 50%, rgba(45,46,131,0.32), transparent 60%);
+    pointer-events: none;
+  }
+  .products-stack {
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .product-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: center;
+    padding: 56px 56px 56px 48px;
+    background: linear-gradient(110deg, rgba(11,10,16,0.95), rgba(11,10,16,0.6));
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: border-color var(--duration-base) var(--ease-standard);
+  }
+  .product-card:hover { border-color: rgba(106,13,221,0.4); }
+
+  .product-card .product-mark {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: rgba(255,255,255,0.42);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .product-card h3 {
+    font-family: var(--font-display);
+    font-weight: var(--weight-extrabold);
+    font-size: var(--text-3xl);
+    letter-spacing: -0.02em;
+    color: var(--vigor-white);
+    margin: 0 0 8px;
+  }
+  .product-card .tagline {
+    font-size: var(--text-md);
+    color: var(--vigor-violet-300);
+    font-weight: var(--weight-medium);
+    margin: 0 0 20px;
+  }
+  .product-card .desc {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: rgba(255,255,255,0.72);
+    margin: 0 0 32px;
+    max-width: 48ch;
+  }
+  .product-card .actions {
+    display: flex; gap: 12px;
+  }
+  .product-card .visual {
+    aspect-ratio: 4 / 3;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    position: relative;
+  }
+  .product-card .visual.xentr {
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 40%, rgba(0,180,255,0.22), transparent 60%),
+      linear-gradient(135deg, #0a1628, #050811);
+  }
+  .product-card .visual.esg {
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(106,13,221,0.32), transparent 60%),
+      linear-gradient(135deg, #0B0A10, #1a0a2e);
+  }
+  .product-card .badge-status {
+    position: absolute;
+    top: 16px; right: 16px;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: var(--radius-pill);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.16);
+    color: rgba(255,255,255,0.78);
+  }
+  .product-card .badge-status .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+  }
+  .product-card .badge-status.live .dot {
+    background: #4ADE80;
+    box-shadow: 0 0 8px #4ADE80;
+  }
+  .product-card .badge-status.preview .dot {
+    background: var(--vigor-violet-300);
+    box-shadow: 0 0 8px var(--vigor-violet);
+  }
+
+  /* ============================================================================
+     MANIFESTO — engineered numerals as graphic
+  ============================================================================ */
+  .manifesto {
+    background: var(--vigor-black);
+    position: relative;
+    overflow: hidden;
+  }
+  .manifesto::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--vigor-gradient-atmosphere);
+    opacity: 0.32;
+    pointer-events: none;
+  }
+  .manifesto-inner {
+    position: relative;
+    text-align: left;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .manifesto-num {
+    font-family: var(--font-display);
+    font-weight: var(--weight-extrabold);
+    font-size: clamp(160px, 24vw, 320px);
+    line-height: 0.85;
+    letter-spacing: -0.06em;
+    background: linear-gradient(180deg, #FFFFFF 0%, #6A0DDD 50%, #2D2E83 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+    user-select: none;
+  }
+  .manifesto-num .dot {
+    color: var(--vigor-violet-300);
+    -webkit-text-fill-color: var(--vigor-violet-300);
+  }
+  .manifesto-body {
+    padding-top: 40px;
+  }
+  .manifesto-body .eyebrow-violet { margin-bottom: 24px; }
+  .manifesto-body .quote {
+    font-family: var(--font-display);
+    font-weight: var(--weight-extrabold);
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--vigor-white);
+    margin: 0 0 32px;
+    max-width: 22ch;
+  }
+  .manifesto-body .quote .v { color: var(--vigor-violet-300); }
+  .manifesto-body .body {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: rgba(255,255,255,0.72);
+    max-width: 56ch;
+    margin: 0 0 28px;
+  }
+  .manifesto-attr {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ============================================================================
+     CTA panel
+  ============================================================================ */
+  .cta-section {
+    background: var(--vigor-black);
+    padding: var(--space-16) 0 var(--space-32);
+  }
+  .cta-panel {
+    background: linear-gradient(110deg, #FFFFFF 0%, #E5D4FB 12%, #6A0DDD 38%, #2D2E83 70%, #000000 100%);
+    border-radius: var(--radius-2xl);
+    padding: 72px 64px;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.4fr auto;
+    gap: 64px;
+    align-items: center;
+  }
+  .cta-panel h2 {
+    font-family: var(--font-display);
+    font-weight: var(--weight-extrabold);
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--vigor-white);
+    margin: 0 0 16px;
+    max-width: 18ch;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+  .cta-panel p {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: rgba(255,255,255,0.92);
+    margin: 0;
+    max-width: 42ch;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.32);
+  }
+  .cta-panel .actions {
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+
+  @media (max-width: 1100px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .cap-grid { grid-template-columns: repeat(2, 1fr); }
+    .product-card { grid-template-columns: 1fr; padding: 40px; }
+    .manifesto-inner { grid-template-columns: 1fr; }
+    .cta-panel { grid-template-columns: 1fr; padding: 48px 32px; }
+  }
+  @media (max-width: 720px) {
+    .arms-grid { grid-template-columns: 1fr; }
+    .cap-grid { grid-template-columns: 1fr; }
+    .hero-meta { flex-wrap: wrap; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" aria-label="VIGOR home">
+      <span class="mark">
+        <svg viewBox="0 0 200 200" fill="none"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M 50 30 L 50 70 L 78 98"/><path d="M 150 30 L 150 70 L 122 98"/><path d="M 78 98 L 100 76 L 122 98"/><path d="M 36 88 L 36 124 Q 36 146 58 146 L 100 178 L 142 146 Q 164 146 164 124 L 164 88"/></g></svg>
+      </span>
+      <span class="word">VIGOR</span>
+    </a>
+    <div class="nav-links">
+      <a href="#industries" data-mm="industries">Industries</a>
+      <a href="products.html" data-mm="products">Products</a>
+      <a href="#projects" data-mm="projects">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a class="btn btn-primary btn-sm" href="contact.html">Start a project</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container-wide">
+    <div class="hero-grid">
+      <div class="hero-left fade-up fade-up-1">
+        <div class="hero-eyebrow"><span class="dot"></span>Six industries · One engineering practice</div>
+        <h1 class="hero-headline">
+          Deeptech<br>
+          for the <span class="accent">real</span> world.
+        </h1>
+        <p class="hero-sub">
+          We engineer software, hardware, and AI systems across manufacturing, healthcare, digital government, smart city, retail &amp; F&amp;B, and immersive. From hospital superapps to factory analytics, traffic intelligence to firmware — built by operators, shipped to production.
+        </p>
+        <div class="hero-rotator" aria-live="polite">
+          <span class="hr-prefix">Now shipping →</span>
+          <span class="hr-words" id="hr-words">
+            <span class="hr-word active">Hospital superapps</span>
+            <span class="hr-word">Factory analytics</span>
+            <span class="hr-word">3D wayfinding</span>
+            <span class="hr-word">Traffic intelligence</span>
+            <span class="hr-word">F&amp;B superapps</span>
+            <span class="hr-word">Enterprise AI agents</span>
+            <span class="hr-word">Firmware &amp; IoT</span>
+          </span>
+        </div>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="contact.html">
+            Start a project
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#industries">Explore industries</a>
+        </div>
+        <div class="hero-meta">
+          <div class="meta">
+            <span class="k">Industries</span>
+            <span class="v">6 verticals</span>
+          </div>
+          <div class="meta">
+            <span class="k">Projects shipped</span>
+            <span class="v">19+ live</span>
+          </div>
+          <div class="meta">
+            <span class="k">Enterprise partner</span>
+            <span class="v">Microsoft</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right schematic -->
+      <div class="hero-schematic fade-up fade-up-3" aria-hidden="true">
+        <div class="schematic-head">
+          <span>VIGOR · Data spine</span>
+          <span class="live"><span class="pulse"></span>Live</span>
+        </div>
+        <div class="schematic-body">
+          <svg class="schematic-svg" viewBox="0 0 400 320" fill="none">
+            <defs>
+              <linearGradient id="line-grad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.15)"/>
+                <stop offset="50%" stop-color="rgba(106,13,221,0.85)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0.15)"/>
+              </linearGradient>
+              <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="1" cy="1" r="0.5" fill="rgba(255,255,255,0.12)"/>
+              </pattern>
+            </defs>
+
+            <rect width="400" height="320" fill="url(#dots)"/>
+
+            <!-- Source nodes (factory floor) -->
+            <g font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(255,255,255,0.55)" letter-spacing="0.04em">
+              <rect x="20" y="40" width="92" height="36" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.16)"/>
+              <text x="34" y="62">PLC · CNC</text>
+              <rect x="20" y="100" width="92" height="36" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.16)"/>
+              <text x="34" y="122">SCADA</text>
+              <rect x="20" y="160" width="92" height="36" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.16)"/>
+              <text x="34" y="182">SENSORS</text>
+              <rect x="20" y="220" width="92" height="36" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.16)"/>
+              <text x="34" y="242">ERP · MES</text>
+            </g>
+
+            <!-- Connecting lines -->
+            <g stroke="url(#line-grad)" stroke-width="1" fill="none">
+              <path d="M112 58 Q 160 58, 180 130 L 200 140"/>
+              <path d="M112 118 Q 160 118, 180 140 L 200 145"/>
+              <path d="M112 178 Q 160 178, 180 150 L 200 155"/>
+              <path d="M112 238 Q 160 238, 180 165 L 200 160"/>
+            </g>
+
+            <!-- Central spine -->
+            <g>
+              <rect x="200" y="120" width="92" height="80" rx="6" fill="rgba(106,13,221,0.18)" stroke="rgba(106,13,221,0.6)" stroke-width="1"/>
+              <text x="217" y="155" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="white" letter-spacing="0.04em">VIGOR</text>
+              <text x="208" y="175" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(255,255,255,0.62)" letter-spacing="0.06em">DATA SPINE</text>
+              <circle cx="246" cy="190" r="3" fill="#6A0DDD">
+                <animate attributeName="opacity" values="0.4;1;0.4" dur="1.6s" repeatCount="indefinite"/>
+              </circle>
+            </g>
+
+            <!-- Output lines -->
+            <g stroke="url(#line-grad)" stroke-width="1" fill="none">
+              <path d="M292 140 Q 320 140, 340 70 L 360 70"/>
+              <path d="M292 160 Q 320 160, 340 130 L 360 130"/>
+              <path d="M292 180 Q 320 180, 340 190 L 360 190"/>
+              <path d="M292 200 Q 320 200, 340 250 L 360 250"/>
+            </g>
+
+            <!-- Output nodes -->
+            <g font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="0.04em">
+              <rect x="290" y="52" width="92" height="36" rx="4" fill="rgba(106,13,221,0.08)" stroke="rgba(106,13,221,0.4)"/>
+              <text x="304" y="74" fill="rgba(229,212,251,0.92)">AI INSIGHT</text>
+              <rect x="290" y="112" width="92" height="36" rx="4" fill="rgba(106,13,221,0.08)" stroke="rgba(106,13,221,0.4)"/>
+              <text x="304" y="134" fill="rgba(229,212,251,0.92)">OEE · UPTIME</text>
+              <rect x="290" y="172" width="92" height="36" rx="4" fill="rgba(106,13,221,0.08)" stroke="rgba(106,13,221,0.4)"/>
+              <text x="304" y="194" fill="rgba(229,212,251,0.92)">ESG · CBAM</text>
+              <rect x="290" y="232" width="92" height="36" rx="4" fill="rgba(106,13,221,0.08)" stroke="rgba(106,13,221,0.4)"/>
+              <text x="304" y="254" fill="rgba(229,212,251,0.92)">AGENT OPS</text>
+            </g>
+          </svg>
+        </div>
+        <div class="schematic-foot" style="padding: 0 20px 18px;">
+          <div class="sf-stat"><div class="k">Throughput</div><div class="v">1.8M<span class="accent">/d</span></div></div>
+          <div class="sf-stat"><div class="k">Latency p99</div><div class="v">42<span class="accent">ms</span></div></div>
+          <div class="sf-stat"><div class="k">Uptime</div><div class="v">99.98<span class="accent">%</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUSTED BY ===== -->
+<div class="trust-strip" id="trusted">
+  <div class="container-wide">
+    <div class="trust-strip-inner">
+      <div class="label">Trusted by</div>
+      <div class="marks logos">
+        <span class="logo logo-microsoft" title="Microsoft">
+          <svg viewBox="0 0 23 23" aria-hidden="true"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="12" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="12" width="10" height="10" fill="#00A4EF"/><rect x="12" y="12" width="10" height="10" fill="#FFB900"/></svg>
+          <span>Microsoft</span>
+        </span>
+        <span class="logo logo-dell" title="Dell Technologies">
+          <svg viewBox="0 0 100 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" stroke-width="1.4"/><text x="7" y="19" font-family="Manrope, sans-serif" font-size="13" font-weight="800" fill="currentColor">D</text><text x="33" y="21" font-family="Manrope, sans-serif" font-size="15" font-weight="700" fill="currentColor" letter-spacing="-0.5">Technologies</text></svg>
+        </span>
+        <span class="logo" title="SIRIM"><span class="wm">SIRIM</span></span>
+        <span class="logo" title="MIMOS"><span class="wm">MIMOS</span></span>
+        <span class="logo" title="NCER"><span class="wm">NCER</span></span>
+        <span class="logo" title="ISO 27001"><span class="wm">ISO 27001</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== INDUSTRIES ===== -->
+<section class="section industries-section" id="industries" data-deep-link>
+  <div class="container-wide">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow-violet">Industries we serve</div>
+        <h2>Six verticals.<br>One engineering practice.</h2>
+      </div>
+      <div class="right">
+        <p class="lede">From hospital floors to factory lines, traffic intersections to F&amp;B counters — we engineer software, hardware, and AI systems where uptime, accuracy, and audit pressure are real.</p>
+      </div>
+    </div>
+
+    <div class="industries-grid">
+      <a class="ind-card" href="#projects" data-filter="manufacturing">
+        <div class="ind-num">Vertical 01</div>
+        <svg class="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V10l5 4V10l5 4V6l5 4v10"/><path d="M9 20v-4M14 20v-4"/></svg>
+        <h3>Manufacturing</h3>
+        <p>Non-invasive IIoT, factory analytics, frontier ops apps, and prop-jig with embedded testing software.</p>
+        <div class="ind-tags"><span>Xentr.AI</span><span>IIoT</span><span>Frontier ops</span></div>
+      </a>
+
+      <a class="ind-card" href="#projects" data-filter="healthcare">
+        <div class="ind-num">Vertical 02</div>
+        <svg class="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14V8a2 2 0 0 0-2-2h-3V3h-4v3H7a2 2 0 0 0-2 2v6"/><path d="M12 9v6M9 12h6"/><path d="M3 14h18l-2 7H5z"/></svg>
+        <h3>Healthcare</h3>
+        <p>Hospital superapps, post-surgery sentiment analysis, clinical workflow systems, and patient-facing mobile.</p>
+        <div class="ind-tags"><span>Superapp</span><span>NLP</span><span>Mobile</span></div>
+      </a>
+
+      <a class="ind-card" href="#projects" data-filter="government">
+        <div class="ind-num">Vertical 03</div>
+        <svg class="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg>
+        <h3>Digital Government</h3>
+        <p>Citizen platforms, vendor management systems, ESG reporting, and grant-aligned R&amp;D infrastructure.</p>
+        <div class="ind-tags"><span>ESG</span><span>VMS</span><span>Citizen</span></div>
+      </a>
+
+      <a class="ind-card" href="#projects" data-filter="smartcity">
+        <div class="ind-num">Vertical 04</div>
+        <svg class="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
+        <h3>Smart City</h3>
+        <p>Traffic analytics, intersection intelligence, edge IoT meshes, and city-scale data spines.</p>
+        <div class="ind-tags"><span>Traffic AI</span><span>Edge IoT</span><span>Analytics</span></div>
+      </a>
+
+      <a class="ind-card" href="#projects" data-filter="retail">
+        <div class="ind-num">Vertical 05</div>
+        <svg class="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18l-2 13H5z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+        <h3>Retail &amp; F&amp;B</h3>
+        <p>Customer-facing superapps, loyalty engines, CRM, and operations frontiers for high-volume chains.</p>
+        <div class="ind-tags"><span>Superapp</span><span>CRM</span><span>Loyalty</span></div>
+      </a>
+
+      <a class="ind-card" href="#projects" data-filter="immersive">
+        <div class="ind-num">Vertical 06</div>
+        <svg class="ind-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <h3>Immersive &amp; Entertainment</h3>
+        <p>3D wayfinding, spatial experiences, AR/VR pilots, and interactive venue installations.</p>
+        <div class="ind-tags"><span>3D</span><span>Wayfinding</span><span>Spatial</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section class="section projects-section" id="projects" data-deep-link>
+  <div class="container-wide">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow-violet">Selected projects</div>
+        <h2>What we've shipped.</h2>
+      </div>
+      <div class="right">
+        <p class="lede">A snapshot of the work — across superapps, AI agents, IoT hardware, firmware, RPA, and cloud transformation. Filter by domain or scroll the wall.</p>
+      </div>
+    </div>
+
+    <div class="proj-filters" id="proj-filters">
+      <button class="proj-filter active" data-f="all">All</button>
+      <button class="proj-filter" data-f="manufacturing">Manufacturing</button>
+      <button class="proj-filter" data-f="healthcare">Healthcare</button>
+      <button class="proj-filter" data-f="government">Digital Government</button>
+      <button class="proj-filter" data-f="smartcity">Smart City</button>
+      <button class="proj-filter" data-f="retail">Retail &amp; F&amp;B</button>
+      <button class="proj-filter" data-f="immersive">Immersive</button>
+      <button class="proj-filter" data-f="ai">AI &amp; Agents</button>
+      <button class="proj-filter" data-f="hardware">Hardware</button>
+    </div>
+
+    <div class="proj-grid" id="proj-grid">
+      <article class="proj-card" data-tags="healthcare">
+        <div class="proj-head"><span class="proj-cat">Healthcare</span><span class="proj-status">Live</span></div>
+        <h4>Hospital superapp</h4>
+        <p>Patient, clinician, and operations surfaces in one Flutter shell — appointments, records, and on-floor workflows.</p>
+        <div class="proj-foot"><span>iOS · Android · Web</span><span>2025</span></div>
+      </article>
+      <article class="proj-card" data-tags="retail">
+        <div class="proj-head"><span class="proj-cat">Retail &amp; F&amp;B</span><span class="proj-status">Live</span></div>
+        <h4>F&amp;B chain superapp</h4>
+        <p>Loyalty, ordering, and store ops engineered for a high-velocity regional chain.</p>
+        <div class="proj-foot"><span>1M+ orders/mo</span><span>2024</span></div>
+      </article>
+      <article class="proj-card" data-tags="immersive">
+        <div class="proj-head"><span class="proj-cat">Immersive</span><span class="proj-status">Live</span></div>
+        <h4>3D immersive wayfinding</h4>
+        <p>WebGL spatial app that renders venue interiors and routes visitors with sub-meter accuracy.</p>
+        <div class="proj-foot"><span>Three.js · WebGL</span><span>2025</span></div>
+      </article>
+      <article class="proj-card" data-tags="smartcity">
+        <div class="proj-head"><span class="proj-cat">Smart City</span><span class="proj-status">Live</span></div>
+        <h4>Traffic analytics</h4>
+        <p>Intersection-level vehicle classification, congestion modeling, and edge inference at city scale.</p>
+        <div class="proj-foot"><span>Edge AI · CV</span><span>2025</span></div>
+      </article>
+      <article class="proj-card" data-tags="healthcare ai">
+        <div class="proj-head"><span class="proj-cat">Healthcare · AI</span><span class="proj-status">Live</span></div>
+        <h4>Post-surgery sentiment analysis</h4>
+        <p>NLP pipeline that scores patient feedback for clinical risk signals across the recovery window.</p>
+        <div class="proj-foot"><span>NLP · Pipeline</span><span>2025</span></div>
+      </article>
+      <article class="proj-card" data-tags="government">
+        <div class="proj-head"><span class="proj-cat">Government</span><span class="proj-status">Live</span></div>
+        <h4>ESG application</h4>
+        <p>Auditable Scope 1, 2, 3 architecture wired to operational data — built for CBAM and APAC reporting.</p>
+        <div class="proj-foot"><span>GHG · CBAM</span><span>2026</span></div>
+      </article>
+      <article class="proj-card" data-tags="ai">
+        <div class="proj-head"><span class="proj-cat">AI &amp; Automation</span><span class="proj-status">Live</span></div>
+        <h4>RPA replaces test automation</h4>
+        <p>Robotic process automation handling QA flows on legacy systems where Selenium gave up.</p>
+        <div class="proj-foot"><span>RPA · QA</span><span>2025</span></div>
+      </article>
+      <article class="proj-card" data-tags="ai">
+        <div class="proj-head"><span class="proj-cat">AI &amp; Cloud</span><span class="proj-status">Live</span></div>
+        <h4>Cloud application transformation</h4>
+        <p>Re-platforming legacy monoliths into containerized, observable, multi-region cloud architecture.</p>
+        <div class="proj-foot"><span>K8s · Hybrid cloud</span><span>2025</span></div>
+      </article>
+      <article class="proj-card" data-tags="ai">
+        <div class="proj-head"><span class="proj-cat">AI &amp; Agents</span><span class="proj-status">Live</span></div>
+        <h4>AI agent transformation</h4>
+        <p>Domain-tuned agent layers replacing manual reconciliation, scheduling, and exception triage.</p>
+        <div class="proj-foot"><span>LLM · Agents</span><span>2026</span></div>
+      </article>
+      <article class="proj-card" data-tags="manufacturing">
+        <div class="proj-head"><span class="proj-cat">Manufacturing</span><span class="proj-status">Live</span></div>
+        <h4>Service Frontier app</h4>
+        <p>Field-service operator surface with offline-first sync, inspection capture, and SLA tracking.</p>
+        <div class="proj-foot"><span>Mobile · Offline</span><span>2024</span></div>
+      </article>
+      <article class="proj-card" data-tags="manufacturing">
+        <div class="proj-head"><span class="proj-cat">Manufacturing</span><span class="proj-status">Live</span></div>
+        <h4>Manufacturing Frontier app</h4>
+        <p>Shop-floor operator UI for line leads — work orders, scrap, downtime reasons, shift handover.</p>
+        <div class="proj-foot"><span>Operator UX</span><span>2025</span></div>
+      </article>
+      <article class="proj-card" data-tags="manufacturing ai">
+        <div class="proj-head"><span class="proj-cat">Manufacturing · AI</span><span class="proj-status">Live</span></div>
+        <h4>Xentr.AI — manufacturing analytics</h4>
+        <p>Non-invasive analytics platform turning PLC and SCADA signals into OEE, predictive maintenance, and agent ops.</p>
+        <div class="proj-foot"><span>Product</span><span>2024</span></div>
+      </article>
+      <article class="proj-card" data-tags="hardware">
+        <div class="proj-head"><span class="proj-cat">Hardware</span><span class="proj-status">Live</span></div>
+        <h4>IoT hardware development</h4>
+        <p>Custom edge gateways and clamp-on sensor modules engineered for industrial environments.</p>
+        <div class="proj-foot"><span>PCB · Edge</span><span>2025</span></div>
+      </article>
+      <article class="proj-card" data-tags="hardware">
+        <div class="proj-head"><span class="proj-cat">Hardware</span><span class="proj-status">Live</span></div>
+        <h4>Firmware development</h4>
+        <p>Embedded firmware for sensor arrays — real-time, OTA-updatable, hardened against floor reality.</p>
+        <div class="proj-foot"><span>C · RTOS · OTA</span><span>2025</span></div>
+      </article>
+      <article class="proj-card" data-tags="hardware manufacturing">
+        <div class="proj-head"><span class="proj-cat">Hardware · QA</span><span class="proj-status">Live</span></div>
+        <h4>Prop jig with testing software</h4>
+        <p>Custom inspection rigs with paired test software — pass/fail logic, traceability, MES integration.</p>
+        <div class="proj-foot"><span>Jig · Test SW</span><span>2025</span></div>
+      </article>
+      <article class="proj-card" data-tags="government">
+        <div class="proj-head"><span class="proj-cat">Government · Enterprise</span><span class="proj-status">Live</span></div>
+        <h4>Vendor management system</h4>
+        <p>Procurement-grade VMS with onboarding, scoring, contract lifecycle, and audit trail.</p>
+        <div class="proj-foot"><span>Procurement</span><span>2024</span></div>
+      </article>
+      <article class="proj-card" data-tags="retail government">
+        <div class="proj-head"><span class="proj-cat">Enterprise</span><span class="proj-status">Live</span></div>
+        <h4>CRM platform</h4>
+        <p>Custom CRM tailored to a regional sales motion — pipeline, comms, and analytics in one stack.</p>
+        <div class="proj-foot"><span>Salesforce-class</span><span>2024</span></div>
+      </article>
+      <article class="proj-card scope" data-tags="ai">
+        <div class="proj-head"><span class="proj-cat">Enterprise · AI</span><span class="proj-status">Partner</span></div>
+        <h4>Enterprise AI — Microsoft partnership</h4>
+        <p>Co-engineered enterprise AI engagements as a Microsoft partner — Azure-native, identity-first.</p>
+        <div class="proj-foot"><span>Azure · Copilot</span><span>2026</span></div>
+      </article>
+      <article class="proj-card" data-tags="retail">
+        <div class="proj-head"><span class="proj-cat">Retail · Mobile</span><span class="proj-status">Live</span></div>
+        <h4>Mobile application development</h4>
+        <p>Cross-platform native apps — payments, identity, content, and offline sync, end-to-end.</p>
+        <div class="proj-foot"><span>iOS · Android</span><span>2024</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT WE DO — TWO ARMS ===== -->
+<section class="section arms">
+  <div class="container-wide">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow-violet">What we do</div>
+        <h2>Two arms.<br>One operator's mindset.</h2>
+      </div>
+      <div class="right">
+        <p class="lede">VIGOR is the technology &amp; innovation parent — an advisory practice that builds, and a portfolio of products that ship. Both share one engineering DNA.</p>
+      </div>
+    </div>
+
+    <div class="arms-grid">
+      <article class="arm-card">
+        <div class="arm-num">Arm 01 / Advisory &amp; Build</div>
+        <h3>Engineer-led<br>digital transformation.</h3>
+        <p>Short engagements. Opinionated recommendations. We architect, build, and hand over — never indefinite consulting.</p>
+        <ul class="arm-bullets">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Bespoke AI / LLM systems for industrial workflows</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Non-invasive IIoT retrofit on legacy machinery</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>ESG / CBAM compliance architecture</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Grant-aligned R&amp;D scoping (SIRIM / MIDA)</li>
+        </ul>
+        <a class="arm-link" href="services.html">
+          Explore services
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <article class="arm-card">
+        <div class="arm-num">Arm 02 / Product portfolio</div>
+        <h3>Operator-built<br>products that ship.</h3>
+        <p>Each product carries the VIGOR foundation — type, motion, iconography, engineering posture — and earns its own accent identity.</p>
+        <ul class="arm-bullets">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Xentr.AI — non-invasive factory operating system</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>ESG / CBAM compliance product (in design)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Shared data spine across the portfolio</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Hybrid endorsed brand model — VIGOR endorses, doesn't lock up</li>
+        </ul>
+        <a class="arm-link" href="products.html">
+          Explore products
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAPABILITIES ===== -->
+<section class="section capabilities">
+  <div class="container-wide">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow-violet">Capabilities</div>
+        <h2>Across the full stack of the floor.</h2>
+      </div>
+      <div class="right">
+        <p>From the PLC up to the agent. From the sensor to the regulator. We work where engineering credibility actually matters.</p>
+      </div>
+    </div>
+
+    <div class="cap-grid">
+      <div class="cap-cell">
+        <span class="num">/01</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+        <h4>AI &amp; LLM Systems</h4>
+        <p>Domain-tuned agents for inspection, scheduling, shop-floor decisions. Not chatbots — operators.</p>
+      </div>
+
+      <div class="cap-cell">
+        <span class="num">/02</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h4M10 17.5h4M6.5 10v4M17.5 10v4"/></svg>
+        <h4>Industrial IoT</h4>
+        <p>Non-invasive retrofit on legacy machines. CI-grade observability without ripping the floor.</p>
+      </div>
+
+      <div class="cap-cell">
+        <span class="num">/03</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l3-7 6 14 3-7h3"/></svg>
+        <h4>ESG &amp; CBAM</h4>
+        <p>Auditable carbon and ESG reporting wired to the same data spine. Built for APAC exporters.</p>
+      </div>
+
+      <div class="cap-cell">
+        <span class="num">/04</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/><path d="M11 7h4a2 2 0 0 1 2 2v4"/></svg>
+        <h4>Integrations</h4>
+        <p>ERP, MES, PLC, SCADA tied into one queryable plane. We've stitched them all.</p>
+      </div>
+
+      <div class="cap-cell">
+        <span class="num">/05</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-9 9M21 12a9 9 0 0 0-9-9M3 12a9 9 0 0 1 9-9M3 12a9 9 0 0 0 9 9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        <h4>Cloud Infrastructure</h4>
+        <p>Private and hybrid clouds engineered for industrial workloads — not generic SaaS.</p>
+      </div>
+
+      <div class="cap-cell">
+        <span class="num">/06</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13l2 2 4-4"/></svg>
+        <h4>Test Automation</h4>
+        <p>Quality systems and inspection pipelines that survive shift changes and floor reality.</p>
+      </div>
+
+      <div class="cap-cell">
+        <span class="num">/07</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>
+        <h4>Engineering Advisory</h4>
+        <p>Engineer-led, opinionated, short engagements. Recommendations you can ship Monday.</p>
+      </div>
+
+      <div class="cap-cell">
+        <span class="num">/08</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/><path d="M3 7l9 6 9-6M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/></svg>
+        <h4>Maintenance &amp; Support</h4>
+        <p>Long-haul SLAs from the team that built it. No handoff to a managed-service vendor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS PREVIEW ===== -->
+<section class="section products">
+  <div class="container-wide">
+    <div class="section-head">
+      <div class="left">
+        <div class="eyebrow-violet">The portfolio</div>
+        <h2>Products that share<br>one engineering spine.</h2>
+      </div>
+      <div class="right">
+        <p>The VIGOR mark endorses. Each product earns its own identity. The foundation — Manrope, motion, iconography, engineering posture — travels.</p>
+      </div>
+    </div>
+
+    <div class="products-stack">
+      <article class="product-card">
+        <div>
+          <div class="product-mark">Product 01 · Factory operating system</div>
+          <h3>Xentr.AI</h3>
+          <div class="tagline">Non-invasive IIoT + agentic AI for the factory floor.</div>
+          <p class="desc">A factory operating system that retrofits to legacy machines without ripping the line — turning PLC and SCADA signals into agent-ready insight, OEE intelligence, and predictive maintenance.</p>
+          <div class="actions">
+            <a class="btn btn-light" href="products.html#xentrai">Learn more</a>
+            <a class="btn btn-ghost" href="contact.html">Book a walkthrough</a>
+          </div>
+        </div>
+        <div class="visual xentr">
+          <div class="badge-status live"><span class="dot"></span>In market</div>
+          <svg viewBox="0 0 320 240" style="width:100%;height:100%;display:block;">
+            <defs>
+              <linearGradient id="xen-line" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="rgba(0,180,255,0.15)"/>
+                <stop offset="50%" stop-color="rgba(0,180,255,0.85)"/>
+                <stop offset="100%" stop-color="rgba(0,180,255,0.15)"/>
+              </linearGradient>
+            </defs>
+            <!-- Time axis chart -->
+            <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
+              <line x1="40" y1="60" x2="280" y2="60"/>
+              <line x1="40" y1="100" x2="280" y2="100"/>
+              <line x1="40" y1="140" x2="280" y2="140"/>
+              <line x1="40" y1="180" x2="280" y2="180"/>
+            </g>
+            <path d="M40 150 L 70 130 L 100 140 L 130 90 L 160 110 L 190 70 L 220 95 L 250 80 L 280 60" fill="none" stroke="url(#xen-line)" stroke-width="2"/>
+            <path d="M40 170 L 70 160 L 100 165 L 130 130 L 160 145 L 190 115 L 220 130 L 250 120 L 280 105" fill="none" stroke="rgba(255,255,255,0.32)" stroke-width="1" stroke-dasharray="3 3"/>
+            <g font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(255,255,255,0.42)">
+              <text x="40" y="210">06:00</text>
+              <text x="120" y="210">10:00</text>
+              <text x="200" y="210">14:00</text>
+              <text x="260" y="210">18:00</text>
+            </g>
+            <text x="40" y="40" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="white" letter-spacing="0.04em">OEE · LINE 03</text>
+            <text x="220" y="40" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="#7ED4FF">94.2%</text>
+          </svg>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div>
+          <div class="product-mark">Product 02 · ESG &amp; CBAM compliance</div>
+          <h3>VIGOR ESG</h3>
+          <div class="tagline">CBAM-native compliance, wired to the floor.</div>
+          <p class="desc">A Malaysian-built CBAM and ESG platform with the IIoT spine underneath. Auditable Scope 1, 2, 3 — connected to the same data backbone Xentr.AI runs on. APAC-built where the rest of the category isn't.</p>
+          <div class="actions">
+            <a class="btn btn-light" href="products.html#esg">Learn more</a>
+            <a class="btn btn-ghost" href="contact.html">Join the design partner program</a>
+          </div>
+        </div>
+        <div class="visual esg">
+          <div class="badge-status preview"><span class="dot"></span>In design</div>
+          <svg viewBox="0 0 320 240" style="width:100%;height:100%;display:block;">
+            <defs>
+              <linearGradient id="esg-bar" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="rgba(106,13,221,0.4)"/>
+                <stop offset="100%" stop-color="rgba(229,212,251,0.95)"/>
+              </linearGradient>
+            </defs>
+            <text x="40" y="40" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="white" letter-spacing="0.04em">CBAM EMBEDDED EMISSIONS</text>
+            <text x="220" y="40" font-family="JetBrains Mono, monospace" font-size="11" fill="rgba(255,255,255,0.55)">tCO₂e/Q</text>
+            <!-- Bars -->
+            <g>
+              <rect x="50" y="120" width="22" height="80" fill="url(#esg-bar)" rx="2"/>
+              <rect x="86" y="100" width="22" height="100" fill="url(#esg-bar)" rx="2"/>
+              <rect x="122" y="80" width="22" height="120" fill="url(#esg-bar)" rx="2"/>
+              <rect x="158" y="90" width="22" height="110" fill="url(#esg-bar)" rx="2"/>
+              <rect x="194" y="70" width="22" height="130" fill="url(#esg-bar)" rx="2"/>
+              <rect x="230" y="60" width="22" height="140" fill="url(#esg-bar)" rx="2" opacity="0.6" stroke="rgba(229,212,251,0.6)" stroke-dasharray="2 2"/>
+            </g>
+            <g font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(255,255,255,0.42)">
+              <text x="55" y="216">Q1</text>
+              <text x="91" y="216">Q2</text>
+              <text x="127" y="216">Q3</text>
+              <text x="163" y="216">Q4</text>
+              <text x="199" y="216">Q1</text>
+              <text x="235" y="216">FCST</text>
+            </g>
+          </svg>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MANIFESTO ===== -->
+<section class="section manifesto" id="manifesto">
+  <div class="container-wide">
+    <div class="manifesto-inner">
+      <div class="manifesto-num">01<span class="dot">.</span></div>
+      <div class="manifesto-body">
+        <div class="eyebrow-violet">Engineering posture</div>
+        <p class="quote">Built by manufacturers, <span class="v">not theorists.</span></p>
+        <p class="body">We've stood on the floors we now instrument. Our engineers ship code that shipped products before — they know what a wet PLC cabinet looks like at 3am, and what an MES rollback feels like during a tier-1 customer audit. We don't pitch transformation. We engineer it, hand it over, and stay on call.</p>
+        <p class="manifesto-attr">— VIGOR engineering principles · 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="container-wide">
+    <div class="cta-panel">
+      <div>
+        <h2>Predictive insights.<br>Smarter decisions.</h2>
+        <p>Thirty-minute walkthrough on your data, your machines. No deck, no pitch — an engineer answering questions.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-light" href="contact.html">Book a consultation</a>
+        <a class="btn btn-ghost" href="products.html">See products</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container-wide">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="word">VIGOR</div>
+        <p class="tagline">Operator-built deeptech bridging shop-floor operations with global compliance — engineered in Penang.</p>
+        <p class="address">L3A-2, Level 3A, SPICE Arena 180,<br>Jalan Tun Dr. Awang, 11900 Relau,<br>Pulau Pinang, Malaysia</p>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="products.html#xentrai">Xentr.AI</a></li>
+          <li><a href="products.html#esg">ESG / CBAM</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:victorlee@vigordigital.org">victorlee@vigordigital.org</a></li>
+          <li><a href="mailto:info@vigordigital.org">info@vigordigital.org</a></li>
+          <li><a href="tel:+60111131981">+6011-111 31981</a></li>
+          <li><a href="https://thevigor.co">thevigor.co</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <div class="reg">VIGOR Digital Solution Sdn. Bhd. (1496696D / 202301002777)<br>© 2026 VIGOR Digital Solution. All rights reserved.</div>
+      <div class="accred">
+        <span>SIRIM</span><span>MIMOS</span><span>MIDA</span><span>NCER</span><span>MIDF</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/megamenu.js"></script>
+<script src="js/tweaks.js"></script>
+
+<!-- ===== POPUP CTA ===== -->
+<div id="pop-cta-overlay" role="dialog" aria-modal="true" aria-labelledby="pc-title">
+  <div class="pop-cta">
+    <button class="pc-close" id="pc-close" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div id="pc-form-wrap">
+      <div class="pc-eyebrow">Let's build something</div>
+      <h2 id="pc-title">Tell us about your project.</h2>
+      <p class="pc-sub">A few quick details and a VIGOR engineer will reach out within 48 hours.</p>
+      <form id="pc-form" onsubmit="return false;">
+        <div class="pc-field">
+          <label for="pc-app">What are you building?</label>
+          <select id="pc-app" required>
+            <option value="">Select a project type…</option>
+            <option>Mobile / Superapp</option>
+            <option>Hospital / Healthcare system</option>
+            <option>Manufacturing analytics (Xentr.AI)</option>
+            <option>Traffic / Smart city analytics</option>
+            <option>3D / Immersive / Wayfinding</option>
+            <option>ESG / CBAM compliance</option>
+            <option>AI agent / LLM transformation</option>
+            <option>Cloud / Frontier transformation</option>
+            <option>RPA / Test automation</option>
+            <option>IoT hardware / Firmware</option>
+            <option>CRM / VMS / Enterprise</option>
+            <option>Other — tell us</option>
+          </select>
+        </div>
+        <div class="pc-row">
+          <div class="pc-field">
+            <label for="pc-budget">Budget range</label>
+            <select id="pc-budget" required>
+              <option value="">Select budget…</option>
+              <option>Under USD 25k</option>
+              <option>USD 25k – 75k</option>
+              <option>USD 75k – 200k</option>
+              <option>USD 200k – 500k</option>
+              <option>USD 500k+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="pc-field">
+            <label for="pc-timeline">Timeline</label>
+            <select id="pc-timeline" required>
+              <option value="">Select timeline…</option>
+              <option>ASAP (under 1 month)</option>
+              <option>1–3 months</option>
+              <option>3–6 months</option>
+              <option>6+ months</option>
+              <option>Exploratory</option>
+            </select>
+          </div>
+        </div>
+        <div class="pc-field">
+          <label for="pc-email">Work email</label>
+          <input id="pc-email" type="email" required placeholder="you@company.com">
+        </div>
+        <div class="pc-actions">
+          <span class="small">We won't add you to a marketing list.</span>
+          <button class="btn btn-primary" type="button" id="pc-submit">Submit project</button>
+        </div>
+      </form>
+    </div>
+    <div id="pc-success-wrap" class="pc-success" style="display:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      <h2>Got it.</h2>
+      <p class="pc-sub">A VIGOR engineer will reach out within 48 hours.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hero rotator
+  (function(){
+    var words = document.querySelectorAll('#hr-words .hr-word');
+    if (!words.length) return;
+    var i = 0;
+    setInterval(function(){
+      var cur = words[i];
+      cur.classList.remove('active');
+      cur.classList.add('exit');
+      setTimeout(function(){ cur.classList.remove('exit'); }, 400);
+      i = (i + 1) % words.length;
+      words[i].classList.add('active');
+    }, 2400);
+  })();
+
+  // Project filters + deep-link from industry cards
+  (function(){
+    var filters = document.querySelectorAll('.proj-filter');
+    var cards = document.querySelectorAll('.proj-card');
+    function apply(f){
+      filters.forEach(function(b){ b.classList.toggle('active', b.dataset.f === f); });
+      cards.forEach(function(c){
+        var tags = (c.dataset.tags || '').split(/\s+/);
+        c.classList.toggle('hidden', f !== 'all' && tags.indexOf(f) === -1);
+      });
+    }
+    filters.forEach(function(b){ b.addEventListener('click', function(){ apply(b.dataset.f); }); });
+    document.querySelectorAll('.ind-card[data-filter]').forEach(function(a){
+      a.addEventListener('click', function(){ setTimeout(function(){ apply(a.dataset.filter); }, 360); });
+    });
+    var u = new URL(location.href);
+    var qf = u.searchParams.get('filter');
+    if (qf) apply(qf);
+  })();
+
+  // Popup CTA — fires after 2 minutes; once per session
+  (function(){
+    var overlay = document.getElementById('pop-cta-overlay');
+    if (!overlay) return;
+    var closeBtn = document.getElementById('pc-close');
+    var submitBtn = document.getElementById('pc-submit');
+    var formWrap = document.getElementById('pc-form-wrap');
+    var successWrap = document.getElementById('pc-success-wrap');
+
+    function show(){
+      if (sessionStorage.getItem('vigor-pop-shown')) return;
+      overlay.classList.add('show');
+      sessionStorage.setItem('vigor-pop-shown', '1');
+    }
+    function hide(){ overlay.classList.remove('show'); }
+
+    closeBtn.addEventListener('click', hide);
+    overlay.addEventListener('click', function(e){ if (e.target === overlay) hide(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') hide(); });
+
+    submitBtn.addEventListener('click', function(){
+      var app = document.getElementById('pc-app').value;
+      var bud = document.getElementById('pc-budget').value;
+      var tl  = document.getElementById('pc-timeline').value;
+      var em  = document.getElementById('pc-email').value;
+      if (!app || !bud || !tl || !em || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
+        alert('Please fill in all fields with a valid email.');
+        return;
+      }
+      formWrap.style.display = 'none';
+      successWrap.style.display = 'block';
+      setTimeout(hide, 2400);
+    });
+
+    setTimeout(show, 120000);
+    document.querySelectorAll('[data-pop-cta]').forEach(function(el){
+      el.addEventListener('click', function(e){ e.preventDefault(); overlay.classList.add('show'); });
+    });
+  })();
+</script>
+</body>
+</html>

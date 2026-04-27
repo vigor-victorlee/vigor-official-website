@@ -1,0 +1,275 @@
+/* ============================================================================
+   VIGOR Design System — colors_and_type.css
+   Source-of-truth tokens for the parent VIGOR brand.
+   Drop this <link>'d into any surface (marketing, deck, product UI) to inherit
+   the foundation. Products extend by overriding --vigor-accent only.
+   ----------------------------------------------------------------------------
+   Manrope is loaded from Google Fonts. If self-hosting, drop .woff2 files in
+   /fonts and add an @font-face block above this comment.
+============================================================================ */
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("fonts/Manrope-VariableFont_wght.ttf") format("truetype-variations"),
+       url("fonts/Manrope-VariableFont_wght.ttf") format("truetype");
+}
+
+:root {
+  /* ----- BASE PALETTE — from 2025 Brand Guidelines §3.1 / §3.2 -------------- */
+
+  /* Primary */
+  --vigor-violet:        #6A0DDD;  /* signature — the differentiator */
+  --vigor-dark-purple:   #482683;  /* print-safe substitute for the gradient */
+  --vigor-black:         #000000;
+
+  /* Secondary */
+  --vigor-navy:          #2D2E83;  /* gradient anchor + supporting depth */
+  --vigor-white:         #FFFFFF;
+  --vigor-nickel:        #6F6C79;  /* industrial neutral, body & meta text */
+
+  /* Tints/shades for UI surfaces (derived, not in brand book — used for
+     dividers, hovers, subtle backgrounds. Stay close to the official hexes.) */
+  --vigor-violet-100:    #F4ECFD;  /* very pale violet — chip/tag fill */
+  --vigor-violet-200:    #E1CCFA;
+  --vigor-violet-300:    #B584F0;
+  --vigor-violet-500:    #6A0DDD;  /* alias of brand violet */
+  --vigor-violet-700:    #4A0AA0;
+  --vigor-violet-900:    #2A055C;
+
+  --vigor-nickel-100:    #F4F4F6;  /* page surface tint */
+  --vigor-nickel-200:    #E7E6EA;  /* hairline borders */
+  --vigor-nickel-300:    #C9C7CE;
+  --vigor-nickel-500:    #6F6C79;  /* alias of brand nickel */
+  --vigor-nickel-700:    #4A4852;
+  --vigor-nickel-900:    #1F1E25;
+
+  /* ----- SEMANTIC ROLES ---------------------------------------------------- */
+
+  /* Backgrounds */
+  --bg-canvas:           var(--vigor-white);
+  --bg-canvas-inverse:   var(--vigor-black);
+  --bg-surface:          var(--vigor-white);
+  --bg-surface-muted:    var(--vigor-nickel-100);
+  --bg-surface-inverse:  #0B0A10;        /* near-black, slightly warmed */
+  --bg-elevated:         var(--vigor-white);
+  --bg-accent:           var(--vigor-violet);
+  --bg-accent-muted:     var(--vigor-violet-100);
+
+  /* Text */
+  --fg-default:          var(--vigor-black);
+  --fg-muted:            var(--vigor-nickel-700);
+  --fg-subtle:           var(--vigor-nickel-500);
+  --fg-on-violet:        var(--vigor-white);
+  --fg-on-dark:          var(--vigor-white);
+  --fg-on-dark-muted:    rgba(255,255,255,0.68);
+  --fg-on-dark-subtle:   rgba(255,255,255,0.42);
+  --fg-accent:           var(--vigor-violet);
+  --fg-link:             var(--vigor-violet);
+  --fg-link-hover:       var(--vigor-violet-700);
+
+  /* Borders */
+  --border-hairline:     var(--vigor-nickel-200);
+  --border-default:      var(--vigor-nickel-300);
+  --border-strong:       var(--vigor-nickel-500);
+  --border-on-dark:      rgba(255,255,255,0.12);
+  --border-accent:       var(--vigor-violet);
+
+  /* Status — compatible with violet brand (not brand-prescribed) */
+  --status-success:      #1F8F4E;
+  --status-warning:      #C77700;
+  --status-danger:       #C2253F;
+  --status-info:         var(--vigor-violet);
+
+  /* ----- SIGNATURE GRADIENT ------------------------------------------------ */
+  /* From §3.3: white → violet → navy → black, used for screen surfaces.
+     Print prefers flat dark-purple. */
+  --vigor-gradient-signature:
+    linear-gradient(110deg,
+      #FFFFFF 0%,
+      #E5D4FB 12%,
+      #6A0DDD 38%,
+      #2D2E83 70%,
+      #000000 100%);
+
+  /* Vertical/portrait variant (business card, social tile) */
+  --vigor-gradient-vertical:
+    linear-gradient(180deg,
+      #FFFFFF 0%,
+      #6A0DDD 35%,
+      #2D2E83 70%,
+      #000000 100%);
+
+  /* Diffuse "atmospheric" version — used as section background on dark
+     surfaces (matches the 2025 brand book section-divider pages 1.0/2.0/3.0). */
+  --vigor-gradient-atmosphere:
+    radial-gradient(ellipse 90% 70% at 18% 60%,
+      rgba(255,255,255,0.85) 0%,
+      rgba(180,120,240,0.55) 18%,
+      rgba(106,13,221,0.85) 38%,
+      #2D2E83 70%,
+      #000000 100%);
+
+  /* Subtle horizontal "rail" — used as 1px gradient dividers/CTAs */
+  --vigor-gradient-rail:
+    linear-gradient(90deg, transparent 0%, var(--vigor-violet) 50%, transparent 100%);
+
+  /* ----- TYPE: FAMILY + WEIGHTS ------------------------------------------- */
+
+  --font-sans:           "Manrope", -apple-system, BlinkMacSystemFont,
+                         "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+                         "Helvetica Neue", sans-serif;
+  --font-display:        var(--font-sans);   /* same family, heavier weights */
+  --font-mono:           "JetBrains Mono", "SFMono-Regular", Consolas,
+                         "Liberation Mono", Menlo, monospace;
+
+  --weight-extralight:   200;
+  --weight-light:        300;
+  --weight-regular:      400;
+  --weight-medium:       500;
+  --weight-semibold:     600;
+  --weight-bold:         700;
+  --weight-extrabold:    800;
+
+  /* ----- TYPE: SCALE -------------------------------------------------------
+     Modular scale 1.25 (major third), tuned for engineered, calm density.
+     Use --text-* for body sizes and --display-* for hero/section headlines.
+  ------------------------------------------------------------------------- */
+
+  --text-xs:       12px;
+  --text-sm:       14px;
+  --text-base:     16px;
+  --text-md:       18px;
+  --text-lg:       20px;
+  --text-xl:       24px;
+  --text-2xl:      30px;
+  --text-3xl:      38px;
+  --text-4xl:      48px;
+  --display-sm:    60px;
+  --display-md:    76px;
+  --display-lg:    96px;
+  --display-xl:    128px;     /* numerals as graphic device — see §brand book 1.0/2.0 */
+
+  --leading-tight:   1.05;    /* display headlines */
+  --leading-snug:    1.18;    /* section headlines */
+  --leading-normal:  1.45;    /* body */
+  --leading-relaxed: 1.65;    /* long-form */
+
+  --tracking-tighter:  -0.04em;
+  --tracking-tight:    -0.02em;
+  --tracking-snug:     -0.01em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.04em;
+  --tracking-wider:    0.16em;   /* eyebrows / labels */
+  --tracking-widest:   0.32em;   /* uppercase nav, ALL-CAPS section markers */
+
+  /* ----- SPACING — 4px base ---------------------------------------------- */
+  --space-0:    0;
+  --space-1:    4px;
+  --space-2:    8px;
+  --space-3:    12px;
+  --space-4:    16px;
+  --space-5:    20px;
+  --space-6:    24px;
+  --space-8:    32px;
+  --space-10:   40px;
+  --space-12:   48px;
+  --space-16:   64px;
+  --space-20:   80px;
+  --space-24:   96px;
+  --space-32:   128px;
+  --space-40:   160px;
+
+  /* ----- RADIUS — pill-leaning, matches logomark + brand-book CTA shape -- */
+  --radius-xs:    2px;
+  --radius-sm:    6px;
+  --radius-md:    10px;
+  --radius-lg:    16px;
+  --radius-xl:    24px;
+  --radius-2xl:   36px;
+  --radius-pill:  9999px;
+  --radius-card-bottom:  0 0 80px 0;  /* signature corner-cut on hero panels (brand-book §1.x layout) */
+
+  /* ----- SHADOWS — restrained; engineered surfaces avoid drop shadows --- */
+  --shadow-none:   none;
+  --shadow-xs:     0 1px 2px rgba(15,12,30,0.04);
+  --shadow-sm:     0 2px 6px rgba(15,12,30,0.06), 0 1px 2px rgba(15,12,30,0.04);
+  --shadow-md:     0 6px 18px rgba(15,12,30,0.08);
+  --shadow-lg:     0 18px 40px rgba(15,12,30,0.12);
+  --shadow-violet: 0 18px 40px rgba(106,13,221,0.20);   /* coloured glow for hero CTAs */
+  --shadow-inset:  inset 0 0 0 1px var(--border-hairline);
+
+  /* ----- MOTION — calm, instrument-grade. No bouncy springs. ------------- */
+  --duration-instant:  80ms;
+  --duration-fast:     160ms;
+  --duration-base:     240ms;
+  --duration-slow:     420ms;
+  --duration-deliberate: 720ms;
+
+  --ease-standard:   cubic-bezier(0.2, 0, 0, 1);     /* default */
+  --ease-emphatic:   cubic-bezier(0.32, 0.72, 0, 1); /* hero entrances */
+  --ease-out:        cubic-bezier(0.22, 1, 0.36, 1); /* settle */
+  --ease-in:         cubic-bezier(0.4, 0, 1, 1);     /* exit */
+
+  /* ----- LAYOUT ---------------------------------------------------------- */
+  --container-max:   1280px;
+  --container-wide:  1440px;
+  --gutter:          24px;
+  --gutter-lg:       40px;
+}
+
+/* ============================================================================
+   SEMANTIC ELEMENT STYLES
+   Apply with utility classes (.h1, .body-md, .eyebrow) or via element selectors.
+============================================================================ */
+
+html { font-family: var(--font-sans); color: var(--fg-default); background: var(--bg-canvas); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+body { margin: 0; font-size: var(--text-base); line-height: var(--leading-normal); }
+
+/* Display — hero & section dividers, numerals as graphic */
+.display-xl, h1.display { font: var(--weight-extrabold) var(--display-xl)/var(--leading-tight) var(--font-display); letter-spacing: var(--tracking-tighter); }
+.display-lg            { font: var(--weight-extrabold) var(--display-lg)/var(--leading-tight) var(--font-display); letter-spacing: var(--tracking-tighter); }
+.display-md            { font: var(--weight-bold)      var(--display-md)/var(--leading-tight) var(--font-display); letter-spacing: var(--tracking-tight); }
+.display-sm            { font: var(--weight-bold)      var(--display-sm)/var(--leading-tight) var(--font-display); letter-spacing: var(--tracking-tight); }
+
+/* Headlines */
+h1, .h1 { font: var(--weight-bold)     var(--text-4xl)/var(--leading-tight) var(--font-display); letter-spacing: var(--tracking-tight); margin: 0; }
+h2, .h2 { font: var(--weight-bold)     var(--text-3xl)/var(--leading-snug)  var(--font-display); letter-spacing: var(--tracking-snug); margin: 0; }
+h3, .h3 { font: var(--weight-semibold) var(--text-2xl)/var(--leading-snug)  var(--font-display); letter-spacing: var(--tracking-snug); margin: 0; }
+h4, .h4 { font: var(--weight-semibold) var(--text-xl)/var(--leading-snug)   var(--font-display); margin: 0; }
+h5, .h5 { font: var(--weight-semibold) var(--text-lg)/var(--leading-snug)   var(--font-sans);    margin: 0; }
+h6, .h6 { font: var(--weight-semibold) var(--text-md)/var(--leading-snug)   var(--font-sans);    margin: 0; }
+
+/* Body */
+.body-lg  { font: var(--weight-regular) var(--text-lg)/var(--leading-relaxed) var(--font-sans); }
+.body-md, p { font: var(--weight-regular) var(--text-base)/var(--leading-normal) var(--font-sans); }
+.body-sm  { font: var(--weight-regular) var(--text-sm)/var(--leading-normal) var(--font-sans); }
+
+/* Labels & meta */
+.eyebrow {
+  font: var(--weight-medium) var(--text-xs)/1 var(--font-sans);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.label    { font: var(--weight-medium) var(--text-sm)/1.2 var(--font-sans); letter-spacing: var(--tracking-wide); }
+.caption  { font: var(--weight-regular) var(--text-xs)/1.4 var(--font-sans); color: var(--fg-subtle); }
+
+/* Stat numerals — large display numbers with tight tracking (per brand book) */
+.stat-numeral {
+  font: var(--weight-bold) var(--display-md)/0.95 var(--font-display);
+  letter-spacing: -0.03em;
+  font-feature-settings: "tnum" 1, "lnum" 1;   /* tabular for alignment */
+}
+
+/* Code */
+code, kbd, samp, pre { font-family: var(--font-mono); font-size: 0.9em; }
+
+/* Links */
+a { color: var(--fg-link); text-decoration: none; transition: color var(--duration-fast) var(--ease-standard); }
+a:hover { color: var(--fg-link-hover); }
+
+/* Selection */
+::selection { background: var(--vigor-violet); color: var(--vigor-white); }
