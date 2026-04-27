@@ -2,16 +2,17 @@
 
 import Image from "next/image";
 
-type Item = { src: string; alt: string; w: number; h: number };
+type Item = { src: string; alt: string };
 
 const ITEMS: Item[] = [
-  { src: "/assets/microsoft.svg", alt: "Microsoft", w: 130, h: 28 },
-  { src: "/assets/dell.svg", alt: "Dell Technologies", w: 130, h: 32 },
-  { src: "/assets/sirim.png", alt: "SIRIM", w: 96, h: 68 },
-  { src: "/assets/mimos.png", alt: "MIMOS Berhad", w: 110, h: 52 },
-  { src: "/assets/mida.png", alt: "Malaysian Investment Development Authority (MIDA)", w: 150, h: 56 },
-  { src: "/assets/ncer.png", alt: "Northern Corridor Economic Region (NCER)", w: 130, h: 48 },
-  { src: "/assets/midf.svg", alt: "Malaysian Industrial Development Finance (MIDF)", w: 110, h: 40 },
+  { src: "/assets/microsoft.svg", alt: "Microsoft" },
+  { src: "/assets/dell.svg", alt: "Dell Technologies" },
+  { src: "/assets/adventist.png", alt: "Penang Adventist Hospital" },
+  { src: "/assets/sirim.png", alt: "SIRIM" },
+  { src: "/assets/mimos.png", alt: "MIMOS Berhad" },
+  { src: "/assets/mida.png", alt: "MIDA" },
+  { src: "/assets/ncer.png", alt: "NCER" },
+  { src: "/assets/midf.svg", alt: "MIDF" },
 ];
 
 function Row({ extraKey, hidden }: { extraKey: string; hidden?: boolean }) {
@@ -19,7 +20,13 @@ function Row({ extraKey, hidden }: { extraKey: string; hidden?: boolean }) {
     <>
       {ITEMS.map((it, i) => (
         <span key={`${extraKey}-${i}`} className="marquee-item" aria-hidden={hidden}>
-          <Image src={it.src} alt={hidden ? "" : it.alt} width={it.w} height={it.h} />
+          <Image
+            src={it.src}
+            alt={hidden ? "" : it.alt}
+            width={160}
+            height={48}
+            unoptimized={it.src.endsWith(".svg")}
+          />
         </span>
       ))}
     </>
