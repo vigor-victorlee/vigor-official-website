@@ -2,7 +2,7 @@ import Nav from "@/components/Nav";
 import HeroSubRotator from "@/components/HeroSubRotator";
 import HeroHeadline from "@/components/HeroHeadline";
 import HeroSpotlight from "@/components/HeroSpotlight";
-import HeroLiveBoard from "@/components/HeroLiveBoard";
+import HeroIndustryDeck from "@/components/HeroIndustryDeck";
 import GeminiEffect from "@/components/GeminiEffect";
 import AppleCarousel from "@/components/AppleCarousel";
 import Footer from "@/components/Footer";
@@ -41,7 +41,7 @@ export default function Page() {
             </div>
 
             <div className="hero-schematic fade-up fade-up-3">
-              <HeroLiveBoard />
+              <HeroIndustryDeck />
             </div>
             {/* legacy schematic removed
               <div className="schematic-head">
