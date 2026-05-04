@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 200" role="img" aria-label="MIMOS Berhad">
+  <g fill="#A0276C">
+    <text x="180" y="92" font-family="Helvetica, Arial, sans-serif" font-weight="300" font-size="84" letter-spacing="6" text-anchor="middle">MIMOS</text>
+  </g>
+  <g fill="none" stroke="#A0276C" stroke-width="10" stroke-linecap="round">
+    <path d="M 90 196 Q 180 86 270 196" />
+    <path d="M 70 196 Q 180 60 290 196" />
+    <path d="M 50 196 Q 180 36 310 196" />
+  </g>
+</svg>

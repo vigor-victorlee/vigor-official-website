@@ -6,6 +6,8 @@ import { AnimatePresence, motion } from "motion/react";
 export default function PopupCTA() {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -32,23 +34,42 @@ export default function PopupCTA() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.currentTarget as HTMLFormElement;
     const data = new FormData(form);
-    const app = data.get("app");
-    const bud = data.get("budget");
-    const tl = data.get("timeline");
-    const em = (data.get("email") as string) || "";
-    if (!app || !bud || !tl || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
-      alert("Please fill in all fields with a valid email.");
+    const app = (data.get("app") as string) || "";
+    const budget = (data.get("budget") as string) || "";
+    const timeline = (data.get("timeline") as string) || "";
+    const email = (data.get("email") as string) || "";
+    if (!app || !budget || !timeline || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setErrorMsg("Please fill in all fields with a valid email.");
       return;
     }
-    setSubmitted(true);
-    setTimeout(() => {
-      setOpen(false);
-      setSubmitted(false);
-    }, 2400);
+    setErrorMsg(null);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ app, budget, timeline, email }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Submission failed");
+      }
+      setSubmitted(true);
+      setTimeout(() => {
+        setOpen(false);
+        setSubmitted(false);
+      }, 2400);
+    } catch (err) {
+      setErrorMsg(
+        err instanceof Error ? err.message : "Something went wrong. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -147,10 +168,15 @@ export default function PopupCTA() {
                     <label htmlFor="pc-email">Work email</label>
                     <input id="pc-email" name="email" type="email" required placeholder="you@company.com" />
                   </div>
+                  {errorMsg ? (
+                    <div className="pc-error" role="alert" style={{ color: "#ff8585", fontSize: 13, marginTop: 8 }}>
+                      {errorMsg}
+                    </div>
+                  ) : null}
                   <div className="pc-actions">
                     <span className="small">We won&apos;t add you to a marketing list.</span>
-                    <button className="btn btn-primary" type="submit">
-                      Submit project
+                    <button className="btn btn-primary" type="submit" disabled={submitting}>
+                      {submitting ? "Sending…" : "Submit project"}
                     </button>
                   </div>
                 </form>

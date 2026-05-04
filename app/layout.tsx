@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "lenis/dist/lenis.css";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "VIGOR — Engineered, not pitched.",
@@ -17,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body data-accent="violet" data-hero-mood="cosmic" data-corner="rounded" data-motion="on">
+        <SmoothScroll />
         {children}
       </body>
     </html>
