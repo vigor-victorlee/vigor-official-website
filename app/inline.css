@@ -461,15 +461,9 @@
     letter-spacing: -0.01em;
   }
 
-  /* Hero right column — diagram-grade schematic card */
+  /* Hero right column — wrapper is transparent; the inner deck card supplies the chrome */
   .hero-schematic {
     position: relative;
-    aspect-ratio: 1 / 1.05;
-    background: rgba(11,10,16,0.72);
-    border: 1px solid var(--border-on-dark);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    backdrop-filter: blur(8px);
   }
   .hero-schematic::before {
     content: "";

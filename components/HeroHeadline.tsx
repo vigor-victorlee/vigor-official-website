@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
-const WORDS = ["real", "shipped", "audited", "operator-grade"];
+const WORDS = ["real", "shipped", "audited", "regulated"];
 
 export default function HeroHeadline() {
   const [i, setI] = useState(0);
