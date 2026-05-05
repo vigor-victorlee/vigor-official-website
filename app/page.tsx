@@ -30,8 +30,8 @@ export default function Page() {
               <HeroHeadline />
               <HeroSubRotator />
               <div className="hero-ctas">
-                <a className="btn btn-primary" href="#contact">
-                  Start a project
+                <a className="btn btn-primary" href="/contact">
+                  Run a 4-week pilot
                   <svg className="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M13 5l7 7-7 7" />
                   </svg>
@@ -351,12 +351,12 @@ export default function Page() {
         <div className="container-wide">
           <div className="cta-panel reveal">
             <div>
-              <h2>Predictive insights.<br />Smarter decisions.</h2>
-              <p>Thirty-minute walkthrough on your data, your machines. No deck, no pitch — an engineer answering questions.</p>
+              <h2>Thirty minutes.<br />Your data. Our engineer.</h2>
+              <p>No deck, no pitch — bring a real problem and we&apos;ll architect the fix on the call. Pilot offer: a 4-week paid engagement, one line, one slice in production.</p>
             </div>
             <div className="actions">
-              <a className="btn btn-light" href="mailto:victorlee@vigordigital.org">Book a consultation</a>
-              <a className="btn btn-ghost" href="#products">See products</a>
+              <a className="btn btn-light" href="/contact">Book a 30-min consultation</a>
+              <a className="btn btn-ghost" href="/about">About Vigor</a>
             </div>
           </div>
         </div>
