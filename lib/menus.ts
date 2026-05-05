@@ -60,22 +60,22 @@ export const MENUS: Record<string, MenuData> = {
       {
         heading: "Operations",
         items: [
-          { label: "Manufacturing", href: "/#industries", desc: "Non-invasive IIoT, factory analytics, frontier ops." },
-          { label: "Smart City", href: "/#industries", desc: "Traffic AI, edge IoT, city-scale data spines." },
+          { label: "Manufacturing", href: "/industries/manufacturing", desc: "Non-invasive IIoT, factory analytics, frontier ops." },
+          { label: "Smart City", href: "/industries/smart-city", desc: "Traffic AI, edge IoT, city-scale data spines." },
         ],
       },
       {
         heading: "People",
         items: [
-          { label: "Healthcare", href: "/#industries", desc: "Hospital superapps, clinical workflows, NLP." },
-          { label: "Retail & F&B", href: "/#industries", desc: "Loyalty, ordering, store ops at scale." },
+          { label: "Healthcare", href: "/industries/healthcare", desc: "Hospital superapps, clinical workflows, NLP." },
+          { label: "Retail & F&B", href: "/industries/retail", desc: "Loyalty, ordering, store ops at scale." },
         ],
       },
       {
         heading: "Public & immersive",
         items: [
-          { label: "Digital Government", href: "/#industries", desc: "VMS, ESG, citizen platforms." },
-          { label: "Immersive", href: "/#industries", desc: "3D wayfinding, spatial, AR/VR.", status: "live" },
+          { label: "Digital Government", href: "/industries/government", desc: "VMS, ESG, citizen platforms." },
+          { label: "Immersive", href: "/industries/immersive", desc: "3D wayfinding, spatial, AR/VR.", status: "live" },
         ],
       },
     ],

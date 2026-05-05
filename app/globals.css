@@ -8,6 +8,7 @@
 @import "./footer.css";
 @import "./gemini.css";
 @import "./contact.css";
+@import "./industries.css";
 
 /* ====== thevigor.co-style nav (override the old .nav) ====== */
 .nav { display: none !important; }
